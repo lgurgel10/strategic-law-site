@@ -40,12 +40,6 @@ const Hero = () => {
             Conheça Nossa Abordagem
           </Button>
         </div>
-
-        {/* Badge - Hub de Negócios */}
-        <div className="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-6 animate-float hidden md:block">
-          <p className="text-white font-semibold text-lg">Hub de Negócios</p>
-          <p className="text-white/80 text-sm mt-1">Direito Empresarial Moderno e Integrado</p>
-        </div>
       </div>
 
       {/* Scroll Indicator */}
