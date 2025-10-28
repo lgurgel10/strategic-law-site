@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
@@ -14,7 +13,7 @@ const navItems = [
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +26,7 @@ const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMobileMenuOpen(false);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -39,59 +38,94 @@ const Navigation = () => {
             : 'bg-transparent'
         }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <button 
-              onClick={() => scrollToSection('#hero')}
-              className={`text-xl font-bold transition-colors ${
-                isScrolled ? 'text-primary' : 'text-white'
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-end h-20">
+            {/* Hamburger Button - Mobile */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`lg:hidden p-3 rounded-lg transition-all duration-300 ${
+                isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
               }`}
+              aria-label="Toggle menu"
             >
-              LINS NEVES
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${
-                    isScrolled ? 'text-foreground' : 'text-white'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
+            {/* Hamburger Button - Desktop */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-2 ${isScrolled ? 'text-primary' : 'text-white'}`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`hidden lg:block p-4 rounded-lg transition-all duration-300 ${
+                isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
+              } hover:scale-110`}
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={36} /> : <Menu size={36} />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="fixed top-20 right-0 bottom-0 w-64 bg-white shadow-xl p-6">
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                >
-                  {item.label}
-                </button>
-              ))}
+      {/* Full Screen Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 animate-fade-in">
+          {/* Background Overlay */}
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm" 
+            onClick={() => setIsMenuOpen(false)} 
+          />
+          
+          {/* Menu Content - Mobile */}
+          <div className="lg:hidden fixed inset-0 bg-primary/95 backdrop-blur-md flex items-center justify-center">
+            <div className="w-full max-w-md px-8">
+              <nav className="flex flex-col gap-6">
+                {navItems.map((item, index) => (
+                  <button
+                    key={item.href}
+                    onClick={() => scrollToSection(item.href)}
+                    className="text-white text-2xl font-medium hover:text-accent transition-all duration-300 text-left py-3 border-b border-white/20 hover:border-accent/50 hover:translate-x-2"
+                    style={{ 
+                      animationDelay: `${index * 50}ms`,
+                      animation: 'slide-in 0.5s ease-out forwards'
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </nav>
+            </div>
+          </div>
+
+          {/* Menu Content - Desktop */}
+          <div className="hidden lg:flex fixed inset-0 bg-primary/95 backdrop-blur-md">
+            <div className="flex w-full">
+              {/* Left Side - Logo */}
+              <div className="w-1/2 flex items-center justify-center border-r border-white/20">
+                <div className="text-center">
+                  <h1 className="text-white text-6xl font-bold mb-4 tracking-wider">
+                    LINS NEVES
+                  </h1>
+                  <p className="text-white/80 text-xl">Advocacia Empresarial</p>
+                </div>
+              </div>
+
+              {/* Right Side - Navigation */}
+              <div className="w-1/2 flex items-center justify-center">
+                <nav className="flex flex-col gap-8">
+                  {navItems.map((item, index) => (
+                    <button
+                      key={item.href}
+                      onClick={() => scrollToSection(item.href)}
+                      className="text-white text-3xl font-medium hover:text-accent transition-all duration-300 text-left py-3 border-b border-white/20 hover:border-accent/50 hover:translate-x-4"
+                      style={{ 
+                        animationDelay: `${index * 50}ms`,
+                        animation: 'slide-in 0.5s ease-out forwards'
+                      }}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </nav>
+              </div>
             </div>
           </div>
         </div>
