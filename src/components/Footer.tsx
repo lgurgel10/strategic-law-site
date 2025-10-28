@@ -1,10 +1,15 @@
 import { Linkedin } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Footer = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+
   return (
-    <footer className="bg-primary text-white py-12">
+    <footer className="bg-primary text-white py-12" ref={ref}>
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className={`grid md:grid-cols-3 gap-8 mb-8 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold mb-4">LINS NEVES ADVOCACIA</h3>
@@ -43,7 +48,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 pt-8 text-center text-sm text-white/60">
+        <div className={`border-t border-white/20 pt-8 text-center text-sm text-white/60 transition-all duration-700 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <p>&copy; {new Date().getFullYear()} Lins Neves Advocacia. Todos os direitos reservados.</p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Building2, DollarSign, Network, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const differentials = [
   {
@@ -25,13 +26,19 @@ const differentials = [
 ];
 
 const Impact = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+
   return (
-    <section id="impact" className="py-20 bg-gradient-to-br from-primary to-secondary text-white">
+    <section id="impact" className="py-20 bg-gradient-to-br from-primary to-secondary text-white" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Projetos de Impacto e Diferenciais
         </h2>
-        <p className="text-center text-white/80 mb-16 max-w-3xl mx-auto text-lg">
+        <p className={`text-center text-white/80 mb-16 max-w-3xl mx-auto text-lg transition-all duration-700 delay-100 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Transformando desafios jurídicos em oportunidades estratégicas de negócio
         </p>
 
@@ -41,8 +48,10 @@ const Impact = () => {
             return (
               <Card 
                 key={index} 
-                className="bg-white/10 backdrop-blur-md border-white/20 hover-scale"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className={`bg-white/10 backdrop-blur-md border-white/20 hover-scale transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${200 + index * 150}ms` }}
               >
                 <CardHeader>
                   <div className="w-14 h-14 rounded-xl bg-accent flex items-center justify-center mb-4 shadow-glow">

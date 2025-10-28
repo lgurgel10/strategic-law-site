@@ -4,9 +4,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { ref, isVisible } = useScrollAnimation(0.2);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,15 +33,19 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-background">
+    <section id="contact" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary">
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 text-primary transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Entre em Contato
         </h2>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Localização e Informações */}
-          <div className="space-y-8">
+          <div className={`space-y-8 transition-all duration-700 delay-200 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+          }`}>
             <div>
               <h3 className="text-2xl font-bold text-primary mb-6">Nossa Localização</h3>
               
@@ -101,7 +107,9 @@ const Contact = () => {
           </div>
 
           {/* Formulário de Contato */}
-          <div className="bg-muted p-8 rounded-2xl shadow-elegant">
+          <div className={`bg-muted p-8 rounded-2xl shadow-elegant transition-all duration-700 delay-400 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}>
             <h3 className="text-2xl font-bold text-primary mb-6">Envie sua Mensagem</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">

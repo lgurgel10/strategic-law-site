@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const articles = [
   {
@@ -24,13 +25,19 @@ const articles = [
 ];
 
 const Insights = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+
   return (
-    <section id="insights" className="py-20 bg-muted">
+    <section id="insights" className="py-20 bg-muted" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-primary">
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Insights Estratégicos e Publicações
         </h2>
-        <p className="text-center text-muted-foreground mb-16 text-lg">
+        <p className={`text-center text-muted-foreground mb-16 text-lg transition-all duration-700 delay-100 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Conhecimento e análise jurídica aplicada ao mundo dos negócios
         </p>
 
@@ -38,8 +45,10 @@ const Insights = () => {
           {articles.map((article, index) => (
             <Card 
               key={index} 
-              className="shadow-elegant hover-scale group cursor-pointer border-0"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`shadow-elegant hover-scale group cursor-pointer border-0 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               <CardHeader>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
@@ -66,7 +75,9 @@ const Insights = () => {
           ))}
         </div>
 
-        <div className="text-center">
+        <div className={`text-center transition-all duration-700 delay-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <Button variant="default" size="lg" className="shadow-elegant">
             Ver Todas as Publicações
           </Button>

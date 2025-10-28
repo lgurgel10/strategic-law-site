@@ -1,17 +1,22 @@
 import { Button } from "@/components/ui/button";
 import officeInterior from "@/assets/office-interior.jpg";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const About = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+  
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="about" className="py-20 bg-background">
+    <section id="about" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}
-          <div className="relative">
+          <div className={`relative transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+          }`}>
             <div className="relative overflow-hidden rounded-2xl shadow-elegant">
               <img 
                 src={officeInterior} 
@@ -23,7 +28,9 @@ const About = () => {
           </div>
 
           {/* Content Side */}
-          <div className="animate-fade-in">
+          <div className={`transition-all duration-700 delay-200 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
               Quem Somos
             </h2>

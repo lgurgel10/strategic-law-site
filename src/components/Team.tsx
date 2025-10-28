@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Linkedin } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const teamMembers = [
   {
@@ -26,13 +27,19 @@ const teamMembers = [
 ];
 
 const Team = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+
   return (
-    <section id="team" className="py-20 bg-background">
+    <section id="team" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-primary">
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Nossa Equipe
         </h2>
-        <p className="text-center text-muted-foreground mb-16 text-lg">
+        <p className={`text-center text-muted-foreground mb-16 text-lg transition-all duration-700 delay-100 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Experiência e Visão Integrada
         </p>
 
@@ -40,8 +47,10 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <Card 
               key={index} 
-              className="group shadow-elegant hover-scale overflow-hidden border-0"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group shadow-elegant hover-scale overflow-hidden border-0 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${200 + index * 100}ms` }}
             >
               <CardContent className="p-6">
                 {/* Placeholder for professional photo */}
@@ -70,7 +79,9 @@ const Team = () => {
           ))}
         </div>
 
-        <div className="text-center">
+        <div className={`text-center transition-all duration-700 delay-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-white">
             Conheça Toda a Nossa Equipe
           </Button>

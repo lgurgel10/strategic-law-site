@@ -1,5 +1,6 @@
 import { Building, FileText, Shield, Briefcase, TrendingUp, Users, Landmark, Globe, BookOpen, Scale } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const areas = [
   {
@@ -27,13 +28,19 @@ const areas = [
 ];
 
 const PracticeAreas = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+
   return (
-    <section id="practice-areas" className="py-20 bg-muted">
+    <section id="practice-areas" className="py-20 bg-muted" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-primary">
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Eixos de Atuação e Soluções Estratégicas
         </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-3xl mx-auto text-lg">
+        <p className={`text-center text-muted-foreground mb-16 max-w-3xl mx-auto text-lg transition-all duration-700 delay-100 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           Nossa estrutura integrada oferece soluções completas para o crescimento sustentável do seu negócio
         </p>
 
@@ -41,8 +48,10 @@ const PracticeAreas = () => {
           {areas.map((area, index) => (
             <Card 
               key={index} 
-              className="shadow-elegant hover-scale bg-card border-0"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className={`shadow-elegant hover-scale bg-card border-0 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               <CardHeader>
                 <CardTitle className="text-2xl text-primary">{area.title}</CardTitle>
@@ -68,7 +77,9 @@ const PracticeAreas = () => {
         </div>
 
         {/* Destaque Direito Trabalhista */}
-        <div className="max-w-4xl mx-auto">
+        <div className={`max-w-4xl mx-auto transition-all duration-700 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <Card className="bg-gradient-to-br from-primary to-secondary text-white border-0 shadow-glow">
             <CardHeader>
               <CardTitle className="text-2xl flex items-center gap-3">
