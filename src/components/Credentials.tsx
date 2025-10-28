@@ -31,7 +31,7 @@ const stats = [
 
 const StatCard = ({ stat, index, isVisible }: any) => {
   const Icon = stat.icon;
-  const count = useCountUp(stat.value || 0, 2000, isVisible);
+  const count = useCountUp(stat.value || 0, 1200, isVisible);
   
   return (
     <div 

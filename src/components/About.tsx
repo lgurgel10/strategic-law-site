@@ -10,47 +10,43 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-background" ref={ref}>
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Image Side */}
-          <div className={`relative transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-          }`}>
-            <div className="relative overflow-hidden rounded-2xl shadow-elegant">
-              <img 
-                src={officeInterior} 
-                alt="Escritório Lins Neves" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
-            </div>
-          </div>
+    <section id="about" className="relative py-32 overflow-hidden" ref={ref}>
+      {/* Parallax Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${officeInterior})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-accent/80" />
+      </div>
 
-          {/* Content Side */}
-          <div className={`transition-all duration-700 delay-200 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className={`bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 shadow-glow transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white text-center">
               Quem Somos
             </h2>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
-              A <strong className="text-primary">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong>hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
+            <p className="text-xl md:text-2xl text-white leading-relaxed mb-6 text-center">
+              A <strong className="text-accent">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong>hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
             </p>
 
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-10 text-center">
               Nossa abordagem integra expertise jurídica de alto nível com inteligência estratégica de negócios, permitindo que nossos clientes não apenas resolvam questões legais, mas transformem desafios em oportunidades de crescimento sustentável.
             </p>
 
-            <Button 
-              variant="default"
-              size="lg"
-              onClick={() => scrollToSection('practice-areas')}
-              className="shadow-elegant"
-            >
-              Nossa Abordagem Estratégica
-            </Button>
+            <div className="flex justify-center">
+              <Button 
+                variant="secondary"
+                size="lg"
+                onClick={() => scrollToSection('practice-areas')}
+                className="shadow-elegant text-lg px-8 py-6 hover-scale"
+              >
+                Nossa Abordagem Estratégica
+              </Button>
+            </div>
           </div>
         </div>
       </div>
