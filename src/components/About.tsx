@@ -25,7 +25,7 @@ const About = () => {
             </h2>
             
             <p className="text-xl md:text-2xl text-white leading-relaxed mb-6 text-center">
-              A <strong className="text-accent">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong>hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
+              O <strong className="text-accent">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong>hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
             </p>
 
             <p className="text-lg md:text-xl text-white/90 leading-relaxed text-center">

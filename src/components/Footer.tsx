@@ -1,5 +1,6 @@
 import { Linkedin } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import logo from "@/assets/logo-lins-neves.png";
 
 const Footer = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
@@ -12,7 +13,11 @@ const Footer = () => {
         }`}>
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">LINS NEVES ADVOCACIA</h3>
+            <img 
+              src={logo} 
+              alt="Lins Neves Advocacia" 
+              className="mb-4 w-48 h-auto"
+            />
             <p className="text-white/80 text-sm leading-relaxed">
               Hub de negócios com expertise jurídica e inteligência estratégica para o crescimento empresarial.
             </p>
