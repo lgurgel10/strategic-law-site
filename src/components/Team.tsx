@@ -60,7 +60,7 @@ const Team = () => {
         <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          Nossa Equipe
+          Equipe
         </h2>
         <p className={`text-center text-muted-foreground mb-16 text-lg transition-all duration-700 delay-100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
