@@ -43,7 +43,7 @@ const StatCard = ({ stat, index, isVisible }: any) => {
   
   return (
     <div 
-      className={`flex flex-col items-center text-center p-8 bg-card rounded-xl shadow-elegant hover-scale transition-all duration-700 ${
+      className={`flex flex-col items-center justify-center text-center p-8 bg-card rounded-xl shadow-elegant hover-scale transition-all duration-700 h-[280px] ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
@@ -54,7 +54,7 @@ const StatCard = ({ stat, index, isVisible }: any) => {
       <p className="text-3xl font-bold text-primary mb-2">
         {stat.value ? `${stat.prefix}${count}` : stat.text}
       </p>
-      <p className="text-muted-foreground">{stat.label}</p>
+      <p className="text-muted-foreground text-sm leading-tight">{stat.label}</p>
     </div>
   );
 };
@@ -93,8 +93,8 @@ const Credentials = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-12 bg-primary text-white hover:bg-primary/90 border-none shadow-glow" />
-          <CarouselNext className="hidden md:flex -right-12 bg-primary text-white hover:bg-primary/90 border-none shadow-glow" />
+          <CarouselPrevious className="bg-primary text-white hover:bg-primary/90 border-none shadow-glow h-12 w-12 -left-4 md:-left-12" />
+          <CarouselNext className="bg-primary text-white hover:bg-primary/90 border-none shadow-glow h-12 w-12 -right-4 md:-right-12" />
         </Carousel>
 
         {/* Mobile navigation dots */}
