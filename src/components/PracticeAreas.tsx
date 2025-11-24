@@ -2,29 +2,16 @@ import { Building, FileText, Shield, Briefcase, TrendingUp, Users, Landmark, Glo
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const areas = [
-  {
-    title: "EIXO EMPRESARIAL",
-    description: "Suporte completo à estruturação e operação de negócios privados",
-    services: [
-      { icon: FileText, name: "Estruturação de Contratos de Grande Porte" },
-      { icon: Shield, name: "Gestão de Riscos e Compliance" },
-      { icon: Building, name: "Societário e Tributário" },
-      { icon: TrendingUp, name: "Fusões e Aquisições" },
-      { icon: Briefcase, name: "Reestruturação Empresarial" },
-      { icon: Users, name: "Direito do Trabalho Empresarial" }
-    ]
-  },
-  {
-    title: "EIXO ADMINISTRATIVO / NEGÓCIOS C/ O PODER PÚBLICO",
-    description: "Viabilização de projetos públicos e parcerias estratégicas (modelagem jurídica e financeira)",
-    services: [
-      { icon: Landmark, name: "Estruturação de Concessões e PPPs" },
-      { icon: BookOpen, name: "Assessoria em Licitações e Contratos" },
-      { icon: Globe, name: "Negócios com Órgãos de Fomento" },
-      { icon: Scale, name: "Consultoria Regulatória" }
-    ]
-  }
+const practiceAreas = [
+  { icon: FileText, name: "Estruturação de Contratos de Grande Porte", description: "Contratos complexos e estratégicos para seu negócio" },
+  { icon: Shield, name: "Gestão de Riscos e Compliance", description: "Proteção empresarial e conformidade regulatória" },
+  { icon: Building, name: "Societário e Tributário", description: "Estruturação societária e planejamento tributário" },
+  { icon: TrendingUp, name: "Fusões e Aquisições", description: "Assessoria completa em M&A e reorganizações" },
+  { icon: Briefcase, name: "Reestruturação Empresarial", description: "Soluções para recuperação e crescimento" },
+  { icon: Landmark, name: "Estruturação de Concessões e PPPs", description: "Parcerias público-privadas e concessões" },
+  { icon: BookOpen, name: "Assessoria em Licitações e Contratos", description: "Suporte jurídico em processos licitatórios" },
+  { icon: Globe, name: "Negócios com Órgãos de Fomento", description: "Viabilização de projetos com financiamento público" },
+  { icon: Scale, name: "Consultoria Regulatória", description: "Orientação estratégica em regulamentações" }
 ];
 
 const PracticeAreas = () => {
@@ -44,36 +31,33 @@ const PracticeAreas = () => {
           Nossa estrutura integrada oferece soluções completas para o crescimento sustentável do seu negócio
         </p>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {areas.map((area, index) => (
-            <Card 
-              key={index} 
-              className={`shadow-elegant hover-scale bg-card border-0 transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${200 + index * 150}ms` }}
-            >
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">{area.title}</CardTitle>
-                <CardDescription className="text-base">{area.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-4">
-                  {area.services.map((service, idx) => {
-                    const Icon = service.icon;
-                    return (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5 text-white" />
-                        </div>
-                        <span className="text-foreground pt-2">{service.name}</span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {practiceAreas.map((area, index) => {
+            const Icon = area.icon;
+            return (
+              <Card 
+                key={index} 
+                className={`group shadow-elegant bg-card border-0 transition-all duration-700 hover:shadow-glow hover:-translate-y-2 cursor-pointer ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${150 + index * 100}ms` }}
+              >
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-primary group-hover:text-secondary transition-colors duration-300">
+                    {area.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center text-base">
+                    {area.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Destaque Direito Trabalhista */}
