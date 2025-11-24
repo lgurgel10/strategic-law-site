@@ -1,6 +1,14 @@
 import { Users, Award, Calendar, Building2 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useCountUp } from "@/hooks/useCountUp";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const stats = [
   {
@@ -55,17 +63,44 @@ const Credentials = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
 
   return (
-    <section id="credentials" className="py-20 bg-muted" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="credentials" className="py-20 bg-muted relative overflow-hidden" ref={ref}>
+      {/* Animated background effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 animate-pulse" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 text-primary transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Nossos Números e Credenciais
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} index={index} isVisible={isVisible} />
+        <Carousel
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+          className="w-full max-w-6xl mx-auto"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {stats.map((stat, index) => (
+              <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                <StatCard stat={stat} index={index} isVisible={isVisible} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex -left-12 bg-primary text-white hover:bg-primary/90 border-none shadow-glow" />
+          <CarouselNext className="hidden md:flex -right-12 bg-primary text-white hover:bg-primary/90 border-none shadow-glow" />
+        </Carousel>
+
+        {/* Mobile navigation dots */}
+        <div className="flex justify-center gap-2 mt-8 md:hidden">
+          {stats.map((_, index) => (
+            <div key={index} className="w-2 h-2 rounded-full bg-primary/30" />
           ))}
         </div>
       </div>
