@@ -1,185 +1,141 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Mail, Linkedin } from "lucide-react";
+import { Linkedin, Instagram, Plus, Minus } from "lucide-react";
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
-  const { toast } = useToast();
   const { ref, isVisible } = useScrollAnimation(0.2);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+  const [selectedOffice, setSelectedOffice] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
+  const offices = [
+    {
+      id: "recife",
+      name: "Recife",
+      address: "Av. Engenheiro Antônio de Goes, 60, Sala 704",
+      city: "Recife / PE",
+      cep: "CEP 51010-000",
+      phone: "+55 (81) 3241-2500",
+      mapUrl: "https://maps.google.com"
+    },
+    {
+      id: "brasilia",
+      name: "Brasília",
+      address: "Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501",
+      city: "Asa Sul – Brasília/DF",
+      cep: "CEP 70316-102",
+      phone: "+55 (61) 3224-4200",
+      mapUrl: "https://maps.google.com"
+    }
+  ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+  const toggleOffice = (officeId: string) => {
+    setSelectedOffice(selectedOffice === officeId ? null : officeId);
   };
 
   return (
-    <section id="contact" className="py-20 bg-background" ref={ref}>
-      <div className="container mx-auto px-4">
-        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 text-primary transition-all duration-700 ${
+    <section id="contact" className="py-20 bg-background relative overflow-hidden" ref={ref}>
+      {/* Background with parallax effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80')",
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/90" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-accent transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          Entre em Contato
+          Contatos
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Localização e Informações */}
-          <div className={`space-y-8 transition-all duration-700 delay-200 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+        <h3 className={`text-xl md:text-2xl font-bold text-center mb-12 text-white transition-all duration-700 delay-100 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          NOSSOS ESCRITÓRIOS
+        </h3>
+
+        <div className="max-w-2xl mx-auto">
+          {/* Offices List */}
+          <div className={`space-y-4 mb-8 transition-all duration-700 delay-200 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <div>
-              <h3 className="text-2xl font-bold text-primary mb-6">Nossa Localização</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground mb-1">Endereço</p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501<br />
-                      Asa Sul – Brasília/DF
-                    </p>
-                    <a 
-                      href="https://maps.google.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-secondary hover:text-accent transition-colors inline-block mt-2"
-                    >
-                      Ver no Mapa →
-                    </a>
-                  </div>
-                </div>
+            {offices.map((office, index) => (
+              <div key={office.id} className="space-y-4">
+                <button
+                  onClick={() => toggleOffice(office.id)}
+                  className="w-full flex items-center gap-3 text-left text-white hover:text-accent transition-colors group"
+                >
+                  {selectedOffice === office.id ? (
+                    <Minus className="w-5 h-5 text-accent flex-shrink-0" />
+                  ) : (
+                    <Plus className="w-5 h-5 text-accent flex-shrink-0" />
+                  )}
+                  <span className="text-lg font-semibold">{office.name}</span>
+                </button>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground mb-1">E-mail</p>
-                    <a 
-                      href="mailto:contato@linsneves.adv.br" 
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                {/* Office Details Card */}
+                {selectedOffice === office.id && (
+                  <div className="ml-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-elegant animate-fade-in">
+                    <h4 className="text-primary font-bold mb-4 border-l-4 border-accent pl-3">
+                      {office.name}
+                    </h4>
+                    <div className="space-y-2 text-foreground/80 mb-4">
+                      <p>{office.address}</p>
+                      <p>{office.city}</p>
+                      <p>{office.cep}</p>
+                      <p className="font-semibold text-foreground">{office.phone}</p>
+                    </div>
+                    <Button
+                      asChild
+                      className="bg-accent hover:bg-accent/90 text-white shadow-elegant"
                     >
-                      contato@linsneves.adv.br
-                    </a>
+                      <a href={office.mapUrl} target="_blank" rel="noopener noreferrer">
+                        Ver mapa
+                      </a>
+                    </Button>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-                    <Linkedin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground mb-1">Redes Sociais</p>
-                    <a 
-                      href="https://linkedin.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      LinkedIn
-                    </a>
-                  </div>
-                </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* Formulário de Contato */}
-          <div className={`bg-muted p-8 rounded-2xl shadow-elegant transition-all duration-700 delay-400 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          {/* Email Button */}
+          <div className={`mb-8 transition-all duration-700 delay-300 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h3 className="text-2xl font-bold text-primary mb-6">Envie sua Mensagem</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Nome Completo
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full"
-                  placeholder="Seu nome"
-                />
-              </div>
+            <Button
+              asChild
+              size="lg"
+              className="w-full bg-accent hover:bg-accent/90 text-white shadow-elegant hover:shadow-glow transition-all"
+            >
+              <a href="mailto:contato@linsneves.adv.br" className="flex items-center justify-center gap-2">
+                <span>contato@linsneves.adv.br</span>
+              </a>
+            </Button>
+          </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  E-mail
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full"
-                  placeholder="seu@email.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                  Telefone
-                </label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="w-full"
-                  placeholder="(61) 99999-9999"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Mensagem
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full resize-none"
-                  placeholder="Como podemos ajudar?"
-                />
-              </div>
-
-              <Button type="submit" size="lg" className="w-full shadow-elegant">
-                Enviar Mensagem
-              </Button>
-            </form>
+          {/* Social Media Icons */}
+          <div className={`flex items-center justify-center gap-6 transition-all duration-700 delay-400 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"
+            >
+              <Linkedin className="w-6 h-6 text-white" />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"
+            >
+              <Instagram className="w-6 h-6 text-white" />
+            </a>
           </div>
         </div>
       </div>
