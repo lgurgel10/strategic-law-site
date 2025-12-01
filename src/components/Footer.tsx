@@ -1,4 +1,4 @@
-import { Linkedin } from "lucide-react";
+import { Linkedin, MessageCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo-lins-neves.png";
 
@@ -34,22 +34,46 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contato */}
+          {/* Localização */}
+          <div>
+            <h4 className="font-semibold mb-4">Localização</h4>
+            <div className="space-y-6 text-sm text-white/80">
+              <div>
+                <p className="font-semibold text-white mb-2">Recife</p>
+                <p>Av. Engenheiro Antônio de Goes, 60, Sala 704</p>
+                <p>Recife / PE - CEP 51010-000</p>
+              </div>
+              <div>
+                <p className="font-semibold text-white mb-2">Brasília</p>
+                <p>Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501</p>
+                <p>Asa Sul – Brasília/DF - CEP 70316-102</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contato e Social */}
           <div>
             <h4 className="font-semibold mb-4">Contato</h4>
-            <p className="text-sm text-white/80 mb-4">
-              Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501<br />
-              Asa Sul – Brasília/DF
-            </p>
-            <a 
-              href="https://linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span className="text-sm">Siga-nos no LinkedIn</span>
-            </a>
+            <div className="space-y-4">
+              <a 
+                href="https://wa.me/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <span className="text-sm">WhatsApp</span>
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/80 hover:text-accent transition-colors block"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span className="text-sm">LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
 
