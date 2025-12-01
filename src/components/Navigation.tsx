@@ -96,15 +96,15 @@ const Navigation = () => {
 
       {/* Full Screen Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 animate-fade-in">
+        <div className="fixed inset-0 z-40 animate-fade-in bg-primary/95 backdrop-blur-md">
           {/* Background Overlay */}
           <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm" 
+            className="fixed inset-0 bg-transparent" 
             onClick={() => setIsMenuOpen(false)} 
           />
           
           {/* Menu Content - Mobile */}
-          <div className="lg:hidden fixed inset-0 bg-primary/95 backdrop-blur-md flex items-center justify-center">
+          <div className="lg:hidden fixed inset-0 flex items-center justify-center">
             <div className="w-full max-w-md px-8">
               <nav className="flex flex-col gap-4">
                 {navItems.map((item, index) => (
@@ -126,7 +126,7 @@ const Navigation = () => {
           </div>
 
           {/* Menu Content - Desktop */}
-          <div className="hidden lg:flex fixed inset-0 bg-primary/95 backdrop-blur-md">
+          <div className="hidden lg:flex fixed inset-0">
             <div className="flex w-full">
               {/* Left Side - Logo */}
               <div className="w-1/2 flex items-center justify-center border-r border-white/20">

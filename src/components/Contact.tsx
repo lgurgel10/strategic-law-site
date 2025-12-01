@@ -27,9 +27,9 @@ const Contact = () => {
     {
       id: "recife",
       name: "Recife",
-      address: "Av. Engenheiro Antônio de Goes, 60, Sala 704",
-      city: "Recife / PE",
-      cep: "CEP 51010-000",
+      address: "Empresarial Janete Costa, Rua Padre Carapuceiro, 968 - Sala 2001 a 2003",
+      city: "Boa Viagem",
+      cep: "CEP 51020-280",
       phone: "+55 (81) 3241-2500",
       mapUrl: "https://maps.google.com"
     },
@@ -151,16 +151,16 @@ const Contact = () => {
           <div className={`transition-all duration-700 delay-200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-elegant relative">
+            <div className="relative">
               <img 
                 src={logo} 
                 alt="Lins Neves" 
-                className="absolute top-6 right-6 w-24 h-auto opacity-80"
+                className="absolute -top-2 right-0 w-24 h-auto opacity-90 z-10"
               />
               
-              <form onSubmit={handleSubmit} className="space-y-6 mt-8">
+              <form onSubmit={handleSubmit} className="space-y-4 pt-16">
                 <div>
-                  <Label htmlFor="name" className="text-primary font-semibold mb-2 block">
+                  <Label htmlFor="name" className="text-white font-normal mb-1 block text-sm">
                     Nome
                   </Label>
                   <Input
@@ -169,14 +169,14 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="border-primary/20 focus:border-accent"
+                    className="bg-transparent border-0 border-b border-white/30 rounded-none focus:border-accent text-white placeholder:text-white/40 focus-visible:ring-0 px-0"
                     placeholder="Seu nome completo"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="email" className="text-primary font-semibold mb-2 block">
-                    Email
+                  <Label htmlFor="email" className="text-white font-normal mb-1 block text-sm">
+                    E-mail
                   </Label>
                   <Input
                     id="email"
@@ -184,13 +184,13 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="border-primary/20 focus:border-accent"
+                    className="bg-transparent border-0 border-b border-white/30 rounded-none focus:border-accent text-white placeholder:text-white/40 focus-visible:ring-0 px-0"
                     placeholder="seu@email.com"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="phone" className="text-primary font-semibold mb-2 block">
+                  <Label htmlFor="phone" className="text-white font-normal mb-1 block text-sm">
                     Telefone
                   </Label>
                   <Input
@@ -199,13 +199,13 @@ const Contact = () => {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="border-primary/20 focus:border-accent"
+                    className="bg-transparent border-0 border-b border-white/30 rounded-none focus:border-accent text-white placeholder:text-white/40 focus-visible:ring-0 px-0"
                     placeholder="(00) 00000-0000"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-primary font-semibold mb-2 block">
+                  <Label htmlFor="message" className="text-white font-normal mb-1 block text-sm">
                     Mensagem
                   </Label>
                   <Textarea
@@ -213,7 +213,7 @@ const Contact = () => {
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="border-primary/20 focus:border-accent min-h-[120px]"
+                    className="bg-transparent border-0 border-b border-white/30 rounded-none focus:border-accent text-white placeholder:text-white/40 focus-visible:ring-0 px-0 min-h-[100px] resize-none"
                     placeholder="Como podemos ajudar?"
                   />
                 </div>
@@ -221,7 +221,7 @@ const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-white shadow-elegant hover:shadow-glow transition-all"
+                  className="w-full bg-accent hover:bg-accent/90 text-white shadow-elegant hover:shadow-glow transition-all mt-6"
                 >
                   Enviar mensagem
                 </Button>
