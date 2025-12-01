@@ -1,4 +1,5 @@
 import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const practiceAreas = [
@@ -19,35 +20,42 @@ const PracticeAreas = () => {
   return (
     <section id="practice-areas" className="py-20 bg-muted" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-2 text-primary transition-all duration-700 ${
+        <h2 className={`text-4xl md:text-5xl font-bold mb-2 text-primary transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Áreas de Atuação
         </h2>
-        <p className={`text-center text-foreground/60 mb-16 text-xl transition-all duration-700 delay-100 ${
+        <h3 className={`text-2xl font-semibold mb-12 text-foreground/80 transition-all duration-700 delay-100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Especialidades
-        </p>
+        </h3>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {practiceAreas.map((area, index) => {
             const Icon = area.icon;
             return (
-              <div 
+              <Card 
                 key={index} 
-                className={`flex flex-col items-center text-center transition-all duration-700 hover:scale-110 cursor-pointer group ${
+                className={`group border-0 bg-transparent transition-all duration-700 hover:-translate-y-2 cursor-pointer ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ transitionDelay: `${150 + index * 100}ms` }}
               >
-                <div className="w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow">
-                  <Icon className="w-8 h-8 text-white" />
-                </div>
-                <p className="text-sm text-foreground font-medium leading-tight group-hover:text-primary transition-colors duration-300">
-                  {area.name}
-                </p>
-              </div>
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-primary group-hover:text-secondary transition-colors duration-300">
+                    {area.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center text-base">
+                    {area.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
