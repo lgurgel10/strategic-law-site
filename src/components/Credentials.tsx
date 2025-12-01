@@ -48,7 +48,9 @@ const StatCard = ({ stat, index, isVisible }: any) => {
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <Icon className="w-16 h-16 text-primary mb-4" />
+      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4 shadow-glow">
+        <Icon className="w-8 h-8 text-white" />
+      </div>
       <p className="text-3xl font-bold text-primary mb-2">
         {stat.value ? `${stat.prefix}${count}` : stat.text}
       </p>

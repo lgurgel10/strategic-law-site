@@ -1,5 +1,5 @@
-import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale } from "lucide-react";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Building, FileText, Shield, Briefcase, TrendingUp, Users, Landmark, Globe, BookOpen, Scale } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const practiceAreas = [
@@ -20,18 +20,18 @@ const PracticeAreas = () => {
   return (
     <section id="practice-areas" className="py-20 bg-muted" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-2 text-primary transition-all duration-700 ${
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          Áreas de Atuação
+          Eixos de Atuação e Soluções Estratégicas
         </h2>
-        <p className={`text-center text-muted-foreground mb-16 text-xl transition-all duration-700 delay-100 ${
+        <p className={`text-center text-muted-foreground mb-16 max-w-3xl mx-auto text-lg transition-all duration-700 delay-100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          Especialidades
+          Nossa estrutura integrada oferece soluções completas para o crescimento sustentável do seu negócio
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {practiceAreas.map((area, index) => {
             const Icon = area.icon;
             return (
@@ -43,14 +43,41 @@ const PracticeAreas = () => {
                 style={{ transitionDelay: `${150 + index * 100}ms` }}
               >
                 <CardHeader className="text-center">
-                  <Icon className="w-12 h-12 mx-auto mb-3 text-primary transition-transform duration-300 group-hover:scale-110" />
-                  <CardTitle className="text-lg text-primary group-hover:text-secondary transition-colors duration-300">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-primary group-hover:text-secondary transition-colors duration-300">
                     {area.name}
                   </CardTitle>
                 </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center text-base">
+                    {area.description}
+                  </CardDescription>
+                </CardContent>
               </Card>
             );
           })}
+        </div>
+
+        {/* Destaque Direito Trabalhista */}
+        <div className={`max-w-4xl mx-auto transition-all duration-700 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <Card className="bg-gradient-to-br from-primary to-secondary text-white border-0 shadow-glow">
+            <CardHeader>
+              <CardTitle className="text-2xl flex items-center gap-3">
+                <Users className="w-8 h-8" />
+                Destaque em Direito Trabalhista
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg text-white/90">
+                Liderança da <strong>Head Dra. Ana Carolina Araújo</strong> em nossa área de Direito do Trabalho Empresarial, 
+                oferecendo soluções estratégicas para gestão de pessoas e conformidade trabalhista.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
