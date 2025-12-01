@@ -55,7 +55,17 @@ const Navigation = () => {
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          {/* Mobile Layout - Logo Centered */}
+          <div className="lg:hidden flex items-center justify-center h-20">
+            <img 
+              src={logo} 
+              alt="Lins Neves" 
+              className="h-12 w-auto"
+            />
+          </div>
+
+          {/* Desktop Layout - WhatsApp + Hamburger */}
+          <div className="hidden lg:flex items-center justify-between h-20">
             {/* WhatsApp Contact Button */}
             <a
               href="https://wa.me/"
@@ -68,24 +78,13 @@ const Navigation = () => {
               } hover:scale-105`}
             >
               <MessageCircle size={24} />
-              <span className="hidden md:inline font-medium">Contato</span>
+              <span className="font-medium">Contato</span>
             </a>
-
-            {/* Hamburger Button - Mobile */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden p-3 rounded-lg transition-all duration-300 ${
-                isMenuOpen ? 'text-white hover:bg-white/10' : isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
-              }`}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
 
             {/* Hamburger Button - Desktop */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`hidden lg:block p-4 rounded-lg transition-all duration-300 ${
+              className={`p-4 rounded-lg transition-all duration-300 ${
                 isMenuOpen ? 'text-white hover:bg-white/10' : isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
               } hover:scale-110`}
               aria-label="Toggle menu"
