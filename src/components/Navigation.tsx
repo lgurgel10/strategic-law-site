@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 const navItems = [
   { label: "Início", href: "#hero" },
@@ -51,7 +52,22 @@ const Navigation = () => {
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-end h-20">
+          <div className="flex items-center justify-between h-20">
+            {/* WhatsApp Contact Button */}
+            <a
+              href="https://wa.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
+                isScrolled 
+                  ? 'text-primary hover:bg-primary/10' 
+                  : 'text-white hover:bg-white/10'
+              } hover:scale-105`}
+            >
+              <MessageCircle size={24} />
+              <span className="hidden md:inline font-medium">Contato</span>
+            </a>
+
             {/* Hamburger Button - Mobile */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

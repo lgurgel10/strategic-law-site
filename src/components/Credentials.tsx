@@ -43,18 +43,18 @@ const StatCard = ({ stat, index, isVisible }: any) => {
   
   return (
     <div 
-      className={`flex flex-col items-center justify-center text-center p-8 bg-card rounded-xl shadow-elegant hover-scale transition-all duration-700 h-[280px] ${
+      className={`flex flex-col items-center justify-center text-center p-8 transition-all duration-700 h-[280px] ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4 shadow-glow">
-        <Icon className="w-8 h-8 text-white" />
+      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-glow">
+        <Icon className="w-10 h-10 text-white" />
       </div>
       <p className="text-3xl font-bold text-primary mb-2">
         {stat.value ? `${stat.prefix}${count}` : stat.text}
       </p>
-      <p className="text-muted-foreground text-sm leading-tight">{stat.label}</p>
+      <p className="text-foreground text-sm leading-tight">{stat.label}</p>
     </div>
   );
 };
