@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { MessageCircle } from "lucide-react";
+import logo from "@/assets/logo-lins-neves.png";
 
 const navItems = [
   { label: "Início", href: "#hero" },
@@ -105,15 +106,16 @@ const Navigation = () => {
           {/* Menu Content - Mobile */}
           <div className="lg:hidden fixed inset-0 bg-primary/95 backdrop-blur-md flex items-center justify-center">
             <div className="w-full max-w-md px-8">
-              <nav className="flex flex-col gap-6">
+              <nav className="flex flex-col gap-4">
                 {navItems.map((item, index) => (
                   <button
                     key={item.href}
                     onClick={() => scrollToSection(item.href)}
-                    className="text-white text-2xl font-medium hover:text-accent transition-all duration-300 text-left py-3 border-b border-white/20 hover:border-accent/50 hover:translate-x-2"
+                    className="text-white text-lg font-normal hover:text-accent transition-all duration-300 text-left py-2 border-b border-white/20 hover:border-accent/50 hover:translate-x-2"
                     style={{ 
                       animationDelay: `${index * 50}ms`,
-                      animation: 'slide-in 0.5s ease-out forwards'
+                      animation: 'slide-in 0.5s ease-out forwards',
+                      fontFamily: 'Cairo, sans-serif'
                     }}
                   >
                     {item.label}
@@ -128,25 +130,27 @@ const Navigation = () => {
             <div className="flex w-full">
               {/* Left Side - Logo */}
               <div className="w-1/2 flex items-center justify-center border-r border-white/20">
-                <div className="text-center">
-                  <h1 className="text-white text-6xl font-bold mb-4 tracking-wider">
-                    LINS NEVES
-                  </h1>
-                  <p className="text-white/80 text-xl">Advocacia Empresarial</p>
+                <div className="flex items-center justify-center">
+                  <img 
+                    src={logo} 
+                    alt="Lins Neves" 
+                    className="w-80 h-auto"
+                  />
                 </div>
               </div>
 
               {/* Right Side - Navigation */}
               <div className="w-1/2 flex items-center justify-center">
-                <nav className="flex flex-col gap-8">
+                <nav className="flex flex-col gap-5">
                   {navItems.map((item, index) => (
                     <button
                       key={item.href}
                       onClick={() => scrollToSection(item.href)}
-                      className="text-white text-3xl font-medium hover:text-accent transition-all duration-300 text-left py-3 border-b border-white/20 hover:border-accent/50 hover:translate-x-4"
+                      className="text-white text-xl font-normal hover:text-accent transition-all duration-300 text-left py-2 border-b border-white/20 hover:border-accent/50 hover:translate-x-4"
                       style={{ 
                         animationDelay: `${index * 50}ms`,
-                        animation: 'slide-in 0.5s ease-out forwards'
+                        animation: 'slide-in 0.5s ease-out forwards',
+                        fontFamily: 'Cairo, sans-serif'
                       }}
                     >
                       {item.label}

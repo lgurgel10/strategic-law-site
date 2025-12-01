@@ -62,11 +62,25 @@ const Team = () => {
         }`}>
           Equipe
         </h2>
-        <p className={`text-center text-muted-foreground mb-16 text-lg transition-all duration-700 delay-100 ${
+        <p className={`text-center text-muted-foreground mb-8 text-lg transition-all duration-700 delay-100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Experiência e Visão Integrada
         </p>
+
+        <div className={`text-center mb-12 transition-all duration-700 delay-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <a 
+            href="#team-full" 
+            className="inline-flex items-center gap-2 text-secondary hover:text-accent transition-all duration-300 text-lg font-medium group"
+          >
+            <span className="border-b-2 border-transparent group-hover:border-accent transition-all">
+              Conheça toda nossa equipe
+            </span>
+            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
 
         <Carousel
           plugins={[
