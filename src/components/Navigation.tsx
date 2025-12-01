@@ -109,11 +109,11 @@ const Navigation = () => {
           <div className="lg:hidden fixed inset-0 flex items-center justify-center">
             <div className="w-full max-w-md px-8">
               {/* Logo centered above menu items */}
-              <div className="flex justify-center mb-12">
+              <div className="flex justify-center mb-8">
                 <img 
                   src={logo} 
                   alt="Lins Neves" 
-                  className="w-64 h-auto"
+                  className="w-40 h-auto"
                 />
               </div>
               
