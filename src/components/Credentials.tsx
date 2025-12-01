@@ -93,8 +93,8 @@ const Credentials = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-primary text-white hover:bg-primary/90 border-none shadow-glow h-12 w-12 -left-4 md:-left-12" />
-          <CarouselNext className="bg-primary text-white hover:bg-primary/90 border-none shadow-glow h-12 w-12 -right-4 md:-right-12" />
+          <CarouselPrevious className="bg-white/10 text-white hover:bg-white/20 border-none backdrop-blur-sm h-10 w-10 -left-4 md:-left-12 opacity-50 hover:opacity-100 transition-opacity" />
+          <CarouselNext className="bg-white/10 text-white hover:bg-white/20 border-none backdrop-blur-sm h-10 w-10 -right-4 md:-right-12 opacity-50 hover:opacity-100 transition-opacity" />
         </Carousel>
 
         {/* Mobile navigation dots */}

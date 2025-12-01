@@ -108,6 +108,15 @@ const Navigation = () => {
           {/* Menu Content - Mobile */}
           <div className="lg:hidden fixed inset-0 flex items-center justify-center">
             <div className="w-full max-w-md px-8">
+              {/* Logo centered above menu items */}
+              <div className="flex justify-center mb-12">
+                <img 
+                  src={logo} 
+                  alt="Lins Neves" 
+                  className="w-64 h-auto"
+                />
+              </div>
+              
               <nav className="flex flex-col gap-4">
                 {navItems.map((item, index) => (
                   <button
