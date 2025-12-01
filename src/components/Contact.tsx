@@ -95,19 +95,17 @@ const Contact = () => {
                   </button>
 
                   {selectedOffice === office.id && (
-                    <div className="ml-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-elegant animate-fade-in">
-                      <h4 className="text-primary font-bold mb-4 border-l-4 border-accent pl-3">
-                        {office.name}
-                      </h4>
-                      <div className="space-y-2 text-foreground/80 mb-4">
-                        <p>{office.address}</p>
+                    <div className="ml-8 space-y-3 animate-fade-in">
+                      <div className="space-y-2 text-white/90 text-base">
+                        <p className="font-medium">{office.address}</p>
                         <p>{office.city}</p>
                         <p>{office.cep}</p>
-                        <p className="font-semibold text-foreground">{office.phone}</p>
+                        <p className="font-semibold text-accent text-lg pt-1">{office.phone}</p>
                       </div>
                       <Button
                         asChild
-                        className="bg-accent hover:bg-accent/90 text-white shadow-elegant"
+                        variant="outline"
+                        className="border-accent text-accent hover:bg-accent hover:text-white transition-all"
                       >
                         <a href={office.mapUrl} target="_blank" rel="noopener noreferrer">
                           Ver mapa
