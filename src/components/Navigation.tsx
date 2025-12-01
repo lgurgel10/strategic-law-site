@@ -96,7 +96,7 @@ const Navigation = () => {
 
       {/* Full Screen Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 animate-fade-in bg-primary/95 backdrop-blur-md">
+        <div className="fixed inset-0 z-[60] animate-fade-in bg-primary/95 backdrop-blur-md">
           {/* Background Overlay */}
           <div 
             className="fixed inset-0 bg-transparent" 
