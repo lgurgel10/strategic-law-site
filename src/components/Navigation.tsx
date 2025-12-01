@@ -47,11 +47,11 @@ const Navigation = () => {
     <>
       <nav 
         className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
-          isMenuOpen ? 'z-[70]' : 'z-50'
+          isMenuOpen ? 'z-[70] bg-transparent' : 'z-50'
         } ${
-          isScrolled 
+          !isMenuOpen && isScrolled 
             ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-transparent'
+            : !isMenuOpen ? 'bg-transparent' : ''
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
@@ -75,7 +75,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`lg:hidden p-3 rounded-lg transition-all duration-300 ${
-                isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
+                isMenuOpen ? 'text-white hover:bg-white/10' : isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
               }`}
               aria-label="Toggle menu"
             >
@@ -86,7 +86,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`hidden lg:block p-4 rounded-lg transition-all duration-300 ${
-                isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
+                isMenuOpen ? 'text-white hover:bg-white/10' : isScrolled ? 'text-primary hover:bg-primary/10' : 'text-white hover:bg-white/10'
               } hover:scale-110`}
               aria-label="Toggle menu"
             >
