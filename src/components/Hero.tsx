@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 import logo from "@/assets/logo-lins-neves.png";
+import bgVideo from "@/assets/bg-video.mp4";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -9,13 +9,17 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Parallax Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${heroBg})` }}
+      {/* Background video */}
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/60" />
-      </div>
+        <source src={bgVideo} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/60" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4">

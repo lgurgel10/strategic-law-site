@@ -6,6 +6,7 @@ import { Linkedin, Instagram, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo-lins-neves.png";
+import bgVideo from "@/assets/bg-video.mp4";
 
 const Contact = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
@@ -50,13 +51,16 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-background relative overflow-hidden" ref={ref}>
-      {/* Background with parallax effect */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80')",
-        }}
-      />
+      {/* Background video with parallax effect */}
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={bgVideo} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/90" />
 
       <div className="container mx-auto px-4 relative z-10">
