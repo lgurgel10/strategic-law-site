@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MapPin } from "lucide-react";
 import logo from "@/assets/logo-lins-neves.png";
 import logoAzul from "@/assets/logo-lins-neves-azul.png";
 
@@ -10,6 +10,19 @@ const navItems = [
   { label: "Equipe", href: "#team" },
   { label: "Insights", href: "#insights" },
   { label: "Contato", href: "#contact" }
+];
+
+const offices = [
+  {
+    city: "RECIFE",
+    phone: "+55 (81) 9.8944-3214",
+    mapUrl: "https://maps.google.com/?q=Recife+PE"
+  },
+  {
+    city: "BRASÍLIA",
+    phone: "+55 (61) 9.9999-9999",
+    mapUrl: "https://maps.google.com/?q=Brasilia+DF"
+  }
 ];
 
 const Navigation = () => {
@@ -47,7 +60,6 @@ const Navigation = () => {
   const isScrolled = scrollProgress > 0.1;
 
   // Logo transition values
-  const logoScale = 1 - (scrollProgress * 0.6); // Scale from 1 to 0.4
   const logoOpacity = scrollProgress > 0.5 ? 1 : 0; // Fade in header logo after 50%
 
   return (
@@ -148,19 +160,17 @@ const Navigation = () => {
           {/* Menu Content - Desktop */}
           <div className="hidden lg:flex fixed inset-0">
             <div className="flex w-full">
-              {/* Left Side - Logo */}
-              <div className="w-1/2 flex items-center justify-center border-r border-white/20">
-                <div className="flex items-center justify-center">
-                  <img 
-                    src={logo} 
-                    alt="Lins Neves" 
-                    className="w-80 h-auto"
-                  />
-                </div>
+              {/* Left Side - Logo (bigger and more to the left) */}
+              <div className="w-1/3 flex items-center justify-start pl-16 border-r border-white/20">
+                <img 
+                  src={logo} 
+                  alt="Lins Neves" 
+                  className="w-96 h-auto"
+                />
               </div>
 
-              {/* Right Side - Navigation */}
-              <div className="w-1/2 flex items-center justify-center">
+              {/* Center - Navigation */}
+              <div className="w-1/3 flex items-center justify-center border-r border-white/20">
                 <nav className="flex flex-col gap-5">
                   {navItems.map((item, index) => (
                     <button
@@ -177,6 +187,35 @@ const Navigation = () => {
                     </button>
                   ))}
                 </nav>
+              </div>
+
+              {/* Right Side - Offices */}
+              <div className="w-1/3 flex items-center justify-center">
+                <div className="flex flex-col gap-8">
+                  <h3 className="text-accent text-lg font-medium mb-2">Nossos escritórios</h3>
+                  {offices.map((office, index) => (
+                    <div 
+                      key={office.city}
+                      className="flex flex-col gap-1"
+                      style={{ 
+                        animationDelay: `${index * 100}ms`,
+                        animation: 'slide-in 0.5s ease-out forwards'
+                      }}
+                    >
+                      <span className="text-white font-semibold text-base">{office.city}</span>
+                      <span className="text-white/80 text-sm">{office.phone}</span>
+                      <a 
+                        href={office.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent text-sm underline hover:text-white transition-colors flex items-center gap-1"
+                      >
+                        <MapPin className="w-3 h-3" />
+                        Ver mapa
+                      </a>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
