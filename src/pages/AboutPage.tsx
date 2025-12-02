@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import bgVideo from "@/assets/bg-video.mp4";
 import marbleTexture from "@/assets/marble-texture.jpg";
+import officeInterior from "@/assets/office-interior.jpg";
 
 const AboutPage = () => {
   useEffect(() => {
@@ -35,74 +36,80 @@ const AboutPage = () => {
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Quem Somos
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Conheça o Lins Neves Advocacia
-          </p>
         </div>
       </section>
 
-      {/* Content Section */}
-      <section 
-        className="py-20 relative"
-        style={{ 
-          backgroundImage: `url(${marbleTexture})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        <div className="absolute inset-0 bg-white/85" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            {/* Back Link */}
-            <Link 
-              to="/"
-              className="group inline-flex items-center gap-2 text-primary hover:text-accent transition-colors mb-12"
+      {/* Main Content with Image Sidebar - Similar to reference */}
+      <section className="relative">
+        {/* Desktop: Side by side layout */}
+        <div className="flex flex-col lg:flex-row">
+          {/* Left side - Office Image (only on desktop) */}
+          <div className="hidden lg:block lg:w-1/3 relative">
+            <div className="sticky top-0 h-screen">
+              <img 
+                src={officeInterior}
+                alt="Interior do escritório Lins Neves"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-primary/30" />
+            </div>
+          </div>
+
+          {/* Right side - Content */}
+          <div className="lg:w-2/3">
+            {/* Intro Box */}
+            <div className="bg-primary text-white p-8 md:p-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-accent">
+                Compromisso com soluções jurídicas de alta confiabilidade e visão inovadora
+              </h2>
+              <p className="text-lg leading-relaxed text-white/90">
+                O Lins Neves Advocacia é um escritório que nasceu com uma visão inovadora sobre o Direito Empresarial e sobre o impacto que decisões jurídicas estratégicas exercem no crescimento e na competitividade das empresas.
+              </p>
+              <p className="text-lg leading-relaxed text-white/90 mt-4">
+                Nossa equipe é formada por advogados experientes, especializados em diversas áreas do Direito, capazes de atuar de maneira integrada tanto na esfera consultiva quanto no contencioso.
+              </p>
+            </div>
+
+            {/* Content with marble background */}
+            <div 
+              className="relative"
+              style={{ 
+                backgroundImage: `url(${marbleTexture})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed'
+              }}
             >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
-              <span>Voltar ao início</span>
-            </Link>
+              <div className="absolute inset-0 bg-white/90" />
+              
+              <div className="relative z-10 p-8 md:p-12 space-y-12">
+                {/* Back Link */}
+                <Link 
+                  to="/"
+                  className="group inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
+                >
+                  <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
+                  <span>Voltar ao início</span>
+                </Link>
 
-            <div className="space-y-8 text-foreground">
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl leading-relaxed">
-                  O <strong className="text-primary">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong className="text-accent">hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
-                </p>
+                {/* Nossa Missão */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl md:text-3xl font-bold text-primary border-l-4 border-accent pl-4">
+                    Nossa Missão
+                  </h3>
+                  
+                  <p className="text-lg leading-relaxed text-foreground">
+                    Fundado há mais de oito anos por Estevan de Barros Lins, nosso escritório construiu uma trajetória marcada por crescimento, evolução constante e compromisso com a excelência. Nossa missão é oferecer soluções jurídicas sofisticadas, personalizadas e verdadeiramente inovadoras, capazes de impulsionar o desenvolvimento dos nossos clientes e fortalecer seus negócios.
+                  </p>
 
-                <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Nossa Missão</h2>
-                <p className="text-lg leading-relaxed">
-                  Oferecer soluções jurídicas estratégicas e personalizadas que impulsionem o crescimento dos negócios dos nossos clientes, combinando excelência técnica com uma visão empresarial integrada.
-                </p>
+                  <p className="text-lg leading-relaxed text-foreground">
+                    Atuamos com uma assessoria jurídica completa, ajustada com precisão às necessidades de cada demanda e sustentada por um padrão de eficiência, seriedade e qualidade reconhecido no mercado. Nosso propósito é transformar conhecimento jurídico em valor estratégico, entregando resultados efetivos, segurança e apoio contínuo às decisões de quem confia em nosso trabalho.
+                  </p>
 
-                <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Nossos Valores</h2>
-                <ul className="space-y-4 text-lg">
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent font-bold">•</span>
-                    <span><strong>Excelência</strong> - Comprometimento com a mais alta qualidade em todas as entregas</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent font-bold">•</span>
-                    <span><strong>Inovação</strong> - Busca constante por soluções criativas e eficientes</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent font-bold">•</span>
-                    <span><strong>Ética</strong> - Atuação pautada pela integridade e transparência</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent font-bold">•</span>
-                    <span><strong>Parceria</strong> - Relacionamento próximo e duradouro com nossos clientes</span>
-                  </li>
-                </ul>
-
-                <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Nossa Estrutura</h2>
-                <p className="text-lg leading-relaxed">
-                  Com escritórios em Recife e Brasília, o Lins Neves conta com uma equipe multidisciplinar de advogados especializados em diversas áreas do Direito Empresarial, Tributário, Trabalhista, Administrativo e Regulatório.
-                </p>
-
-                <p className="text-lg leading-relaxed mt-6">
-                  Nossa estrutura permite atender clientes em todo o território nacional, oferecendo suporte jurídico completo para empresas de diferentes portes e segmentos.
-                </p>
+                  <p className="text-lg leading-relaxed text-foreground">
+                    Mais do que prestar serviços jurídicos, buscamos construir parcerias sólidas, transparentes e duradouras, pautadas na ética, no profissionalismo e em uma atuação moderna, alinhada aos desafios do cenário empresarial contemporâneo.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
