@@ -9,7 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import bgTexture from "@/assets/bg-texture.jpg";
+import marbleTexture from "@/assets/marble-texture.jpg";
 
 const stats = [
   {
@@ -69,13 +69,13 @@ const Credentials = () => {
       className="py-20 relative overflow-hidden" 
       ref={ref}
       style={{ 
-        backgroundImage: `url(${bgTexture})`,
+        backgroundImage: `url(${marbleTexture})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
     >
-      {/* Animated background effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 animate-pulse" />
+      {/* Overlay for better readability */}
+      <div className="absolute inset-0 bg-white/70" />
       
       <div className="container mx-auto px-4 relative z-10">
         <h2 className={`text-4xl md:text-5xl font-bold text-center mb-16 text-primary transition-all duration-700 ${
