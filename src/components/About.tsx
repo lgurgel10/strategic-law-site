@@ -1,4 +1,4 @@
-import officeInterior from "@/assets/office-interior.jpg";
+import bgVideo from "@/assets/bg-video.mp4";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const About = () => {
@@ -6,11 +6,17 @@ const About = () => {
 
   return (
     <section id="about" className="relative py-32 overflow-hidden" ref={ref}>
-      {/* Parallax Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${officeInterior})` }}
-      >
+      {/* Video Background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src={bgVideo} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-primary/75" />
       </div>
 

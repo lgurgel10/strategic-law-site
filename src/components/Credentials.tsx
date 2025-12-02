@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import bgTexture from "@/assets/bg-texture.jpg";
 
 const stats = [
   {
@@ -63,7 +64,16 @@ const Credentials = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
 
   return (
-    <section id="credentials" className="py-20 bg-muted relative overflow-hidden" ref={ref}>
+    <section 
+      id="credentials" 
+      className="py-20 relative overflow-hidden" 
+      ref={ref}
+      style={{ 
+        backgroundImage: `url(${bgTexture})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
       {/* Animated background effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 animate-pulse" />
       
@@ -93,8 +103,8 @@ const Credentials = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-white/10 text-white hover:bg-white/20 border-none backdrop-blur-sm h-10 w-10 -left-4 md:-left-12 opacity-50 hover:opacity-100 transition-opacity" />
-          <CarouselNext className="bg-white/10 text-white hover:bg-white/20 border-none backdrop-blur-sm h-10 w-10 -right-4 md:-right-12 opacity-50 hover:opacity-100 transition-opacity" />
+          <CarouselPrevious className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-10 w-10 -left-4 md:-left-12" />
+          <CarouselNext className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-10 w-10 -right-4 md:-right-12" />
         </Carousel>
 
         {/* Mobile navigation dots */}

@@ -1,8 +1,18 @@
 import { useState } from "react";
-import { Linkedin, Mail, Phone, X, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Linkedin, Mail, Phone, ArrowLeft, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import bgTexture from "@/assets/bg-texture.jpg";
 
 interface TeamMember {
   name: string;
@@ -121,55 +131,45 @@ const teamMembers: TeamMember[] = [
   }
 ];
 
-const getCategoryLabel = (category: string) => {
-  switch (category) {
-    case "socio": return "Sócios";
-    case "head": return "Heads";
-    case "advogado": return "Advogados";
-    default: return "";
-  }
-};
-
 const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () => void }) => {
   return (
     <div 
       onClick={onClick}
-      className="group cursor-pointer p-6 border-b border-border/30 hover:bg-primary/5 transition-all duration-300"
+      className="group cursor-pointer flex flex-col items-center text-center px-4"
     >
-      <div className="flex items-start gap-6">
-        <Avatar className="w-20 h-20 ring-2 ring-primary/20 group-hover:ring-accent/50 transition-all duration-300 shrink-0">
+      <div className="relative mb-4">
+        <Avatar className="w-32 h-32 md:w-40 md:h-40 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
           <AvatarImage src="" alt={member.name} />
-          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg font-medium">
+          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
         </Avatar>
-        
-        <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-semibold text-primary group-hover:text-accent transition-colors duration-300">
-            {member.name}
-          </h3>
-          <p className="text-accent text-sm font-medium mt-1">{member.role}</p>
-          
-          <div className="mt-3 flex flex-wrap gap-2">
-            {member.areas.slice(0, 3).map((area, index) => (
-              <span 
-                key={index}
-                className="text-xs px-2 py-1 bg-primary/10 text-primary rounded"
-              >
-                {area}
-              </span>
-            ))}
-            {member.areas.length > 3 && (
-              <span className="text-xs px-2 py-1 text-muted-foreground">
-                +{member.areas.length - 3}
-              </span>
-            )}
-          </div>
-        </div>
-        
-        <div className="text-primary/40 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300">
-          →
-        </div>
+      </div>
+      
+      <h3 className="text-base md:text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-1">
+        {member.name}
+      </h3>
+      <p className="text-muted-foreground text-sm mb-3">{member.role}</p>
+      
+      <p className="text-primary text-sm mb-3">{member.phone}</p>
+      
+      <div className="flex items-center gap-3">
+        <a 
+          href={`mailto:${member.email}`}
+          onClick={(e) => e.stopPropagation()}
+          className="text-accent hover:text-primary transition-colors"
+        >
+          <Mail className="w-5 h-5" />
+        </a>
+        <a 
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="text-accent hover:text-primary transition-colors"
+        >
+          <Linkedin className="w-5 h-5" />
+        </a>
       </div>
     </div>
   );
@@ -186,7 +186,6 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         </DialogHeader>
         
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Left Column - Photo and Contact */}
           <div className="md:w-1/3 space-y-4">
             <Avatar className="w-32 h-32 ring-4 ring-primary/20">
               <AvatarImage src="" alt={member.name} />
@@ -224,7 +223,6 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
             </div>
           </div>
           
-          {/* Right Column - Details */}
           <div className="md:w-2/3 space-y-6">
             <div>
               <h2 className="text-2xl font-semibold text-primary">{member.name}</h2>
@@ -266,7 +264,6 @@ const Team = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showFullTeam, setShowFullTeam] = useState(false);
 
   const handleMemberClick = (member: TeamMember) => {
     setSelectedMember(member);
@@ -278,17 +275,17 @@ const Team = () => {
     setSelectedMember(null);
   };
 
-  const socios = teamMembers.filter(m => m.category === "socio");
-  const heads = teamMembers.filter(m => m.category === "head");
-  const advogados = teamMembers.filter(m => m.category === "advogado");
-
-  // For carousel, show a mix of all
-  const carouselMembers = [...socios, ...heads.slice(0, 2)];
-
   return (
-    <section id="team" className="py-20 bg-background relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-      
+    <section 
+      id="team" 
+      className="py-20 relative overflow-hidden" 
+      ref={ref}
+      style={{ 
+        backgroundImage: `url(${bgTexture})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
       <div className="container mx-auto px-4 relative z-10">
         <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -301,108 +298,48 @@ const Team = () => {
           Experiência e Visão Integrada
         </p>
 
-        {!showFullTeam ? (
-          <>
-            {/* Preview Cards */}
-            <div className={`max-w-4xl mx-auto mb-8 transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
-              <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
-                {carouselMembers.map((member, index) => (
+        {/* Carousel */}
+        <div className={`max-w-6xl mx-auto mb-12 transition-all duration-700 delay-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {teamMembers.map((member, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
                   <TeamMemberCard 
-                    key={index} 
                     member={member} 
                     onClick={() => handleMemberClick(member)}
                   />
-                ))}
-              </div>
-            </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -left-4 md:-left-14" />
+            <CarouselNext className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -right-4 md:-right-14" />
+          </Carousel>
+        </div>
 
-            {/* CTA to see full team */}
-            <div className={`text-center transition-all duration-700 delay-300 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
-              <button 
-                onClick={() => setShowFullTeam(true)}
-                className="inline-flex items-center gap-2 text-accent hover:text-primary transition-all duration-300 text-lg font-medium group"
-              >
-                <span className="border-b-2 border-transparent group-hover:border-primary transition-all">
-                  Conheça toda nossa equipe
-                </span>
-                <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            {/* Full Team View */}
-            <div className={`max-w-4xl mx-auto transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
-              {/* Sócios */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                  <span className="w-8 h-[2px] bg-accent"></span>
-                  Sócios
-                </h3>
-                <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
-                  {socios.map((member, index) => (
-                    <TeamMemberCard 
-                      key={index} 
-                      member={member} 
-                      onClick={() => handleMemberClick(member)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Heads */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                  <span className="w-8 h-[2px] bg-accent"></span>
-                  Heads
-                </h3>
-                <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
-                  {heads.map((member, index) => (
-                    <TeamMemberCard 
-                      key={index} 
-                      member={member} 
-                      onClick={() => handleMemberClick(member)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Advogados */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                  <span className="w-8 h-[2px] bg-accent"></span>
-                  Advogados
-                </h3>
-                <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
-                  {advogados.map((member, index) => (
-                    <TeamMemberCard 
-                      key={index} 
-                      member={member} 
-                      onClick={() => handleMemberClick(member)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Back button */}
-              <div className="text-center">
-                <button 
-                  onClick={() => setShowFullTeam(false)}
-                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-all duration-300 text-sm"
-                >
-                  <span className="transform group-hover:-translate-x-1 transition-transform">←</span>
-                  <span>Voltar</span>
-                </button>
-              </div>
-            </div>
-          </>
-        )}
+        {/* CTA to see full team */}
+        <div className={`text-center transition-all duration-700 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <Link 
+            to="/equipe"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-white rounded-full hover:bg-accent/90 transition-all duration-300 text-base font-medium"
+          >
+            Conheça toda nossa equipe
+          </Link>
+        </div>
       </div>
 
       <TeamMemberModal 
