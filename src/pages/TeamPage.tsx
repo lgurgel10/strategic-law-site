@@ -71,12 +71,12 @@ const teamMembers: TeamMember[] = [
     photo: anaCarolinaAraujoPhoto
   },
   {
-    name: "Ana Carolina Carvalho",
+    name: "Ana Carolina de Araújo Carvalho",
     role: "Head da Área Tributária",
     category: "head",
-    languages: ["Português"],
-    areas: ["Direito Tributário", "Direito Aduaneiro"],
-    description: "Advogada especialista em Direito Administrativo, com mais de 20 anos de experiência na advocacia, com prática em assessoria empresarial e mais de 10 anos de atuação dedicada ao Direito Administrativo.\n\nGraduada em Direito pela Universidade Católica de Pernambuco (UNICAP), possui sólida trajetória em demandas judiciais e ampla experiência em processos administrativos, notadamente em licitações, contratos administrativos, concessões comuns, parcerias público-privadas e assuntos relacionados a agentes públicos.\n\nDetém Mestrado em Direito pela Universidade Federal de Pernambuco (UFPE), na linha de pesquisa Estado, Regulação e Tributação Indutora, além de Especialização em Direito Administrativo pela mesma instituição.\n\nAtua também na área acadêmica como Professora de Direito Constitucional, Direito Administrativo, Direito Financeiro e disciplinas correlatas na Faculdade Nova Roma, em Recife/PE.",
+    languages: ["Português", "Inglês"],
+    areas: ["Direito Tributário"],
+    description: "Advogada com 15 anos de atuação em Direito Tributário, desenvolve trabalho estratégico nos âmbitos administrativo e judicial, com ampla experiência na condução de demandas de alta complexidade, assessora empresas de diversos segmentos econômicos, liderando soluções voltadas à eficiência fiscal e à segurança jurídica.\n\nFormada em Direito pela Universidade Católica de Pernambuco (UNICAP), é especialista em Direito Tributário pelo Instituto Brasileiro de Estudos Tributários (IBET), onde também cursou Contabilidade para Advogados. Atualmente cursa o Programa de Formação em Reforma Tributária pela Faculdade Brasileira de Tributação (FBT), ampliando sua atuação no novo sistema tributário nacional.",
     email: "carolinacarvalho@linsneves.adv.br",
     phone: "(81) 9.8944-3214",
     photo: anaCarolinaCarvalhoPhoto
@@ -131,12 +131,12 @@ const teamMembers: TeamMember[] = [
     photo: marcoPhoto
   },
   {
-    name: "Laila Mirella Fonsêca de Oliveira Marques",
+    name: "Laila Marques",
     role: "Advogada",
     category: "advogado",
     languages: ["Português", "Inglês"],
     areas: ["Direito Tributário"],
-    description: "Formada em Direito pela Universidade Federal de Pernambuco (UFPE) em 2023, atua na área tributária desde o início de sua trajetória, com experiência tanto no consultivo quanto no contencioso.\n\nFluente em inglês, possui formação acadêmica bilíngue, fruto do ensino médio americano cursado em parceria com a Texas Tech University e de intercâmbio no Reino Unido.",
+    description: "Formada em Direito pela Universidade Federal de Pernambuco (UFPE) em 2023, atua na área tributária desde o início de sua trajetória, com experiência tanto no consultivo quanto no contencioso. Atualmente, cursa a Especialização em Direito Tributário pelo IBET, com conclusão prevista para junho de 2026, aprofundando-se em temas centrais da tributação brasileira.\n\nDurante a graduação, participou do curso completo de \"Introdução e Atualização em Direito Tributário\", oferecido pelo IBDT, além de ter ampliado sua formação com o curso \"Introduction to Corporate Finance\", da Columbia University.\n\nFluente em inglês, possui formação acadêmica bilíngue, fruto do ensino médio americano cursado em parceria com a Texas Tech University e de intercâmbio no Reino Unido.",
     email: "lailamarques@linsneves.adv.br",
     linkedin: "https://www.linkedin.com/in/laila-marques-7981b31b9",
     phone: "(81) 9.8944-3214",
@@ -152,7 +152,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     >
       <div className="relative mb-4">
         <Avatar className="w-36 h-36 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
-          <AvatarImage src={member.photo} alt={member.name} className="object-cover" />
+          <AvatarImage src={member.photo} alt={member.name} className="object-cover object-top" />
           <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
@@ -203,7 +203,7 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-4">
             <Avatar className="w-32 h-32 ring-4 ring-primary/20">
-              <AvatarImage src={member.photo} alt={member.name} className="object-cover" />
+              <AvatarImage src={member.photo} alt={member.name} className="object-cover object-top" />
               <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-3xl font-medium">
                 {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
               </AvatarFallback>
