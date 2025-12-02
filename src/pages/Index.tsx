@@ -7,6 +7,7 @@ import Team from "@/components/Team";
 import Insights from "@/components/Insights";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <Insights />
       <Contact />
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
