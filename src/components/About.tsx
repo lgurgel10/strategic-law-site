@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import bgVideo from "@/assets/bg-video.mp4";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -30,13 +32,19 @@ const About = () => {
               Quem Somos
             </h2>
             
-            <p className="text-lg md:text-xl text-white leading-relaxed mb-4">
+            <p className="text-lg md:text-xl text-white leading-relaxed mb-8">
               O <strong className="text-accent">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong>hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
             </p>
 
-            <p className="text-base md:text-lg text-white/90 leading-relaxed">
-              Nossa abordagem integra expertise jurídica de alto nível com inteligência estratégica de negócios, permitindo que nossos clientes não apenas resolvam questões legais, mas transformem desafios em oportunidades de crescimento sustentável.
-            </p>
+            <Link 
+              to="/quem-somos"
+              className="group inline-flex items-center gap-3 text-white hover:text-accent transition-all duration-300"
+            >
+              <span className="text-lg font-medium border-b-2 border-white group-hover:border-accent transition-colors duration-300">
+                Saiba mais
+              </span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+            </Link>
           </div>
         </div>
       </div>
