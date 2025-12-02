@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone, ArrowLeft } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import bgTexture from "@/assets/bg-texture.jpg";
+import marbleTexture from "@/assets/marble-texture.jpg";
+
+// Import team photos
+import estevanPhoto from "@/assets/team/estevan.jpg";
+import arthurPhoto from "@/assets/team/arthur.jpg";
+import anaCarolinaAraujoPhoto from "@/assets/team/ana-carolina-araujo.jpg";
+import anaCarolinaCarvalhoPhoto from "@/assets/team/ana-carolina-carvalho.jpg";
+import angelikaPhoto from "@/assets/team/angelika.jpg";
+import damarisPhoto from "@/assets/team/damaris.jpg";
+import tiberioPhoto from "@/assets/team/tiberio.jpg";
+import marcoPhoto from "@/assets/team/marco.jpg";
+import lailaPhoto from "@/assets/team/laila.jpg";
 
 interface TeamMember {
   name: string;
@@ -15,8 +26,9 @@ interface TeamMember {
   areas: string[];
   description: string;
   email: string;
-  linkedin: string;
+  linkedin?: string;
   phone: string;
+  photo: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -29,8 +41,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Empresarial", "Direito Tributário"],
     description: "Sócio-fundador do Lins Neves Advocacia, é formado pela Faculdade Boa Viagem (FBV) e atua há mais de 8 anos na condução estratégica das áreas tributária e empresarial do escritório, com presença marcante nos setores industrial, comercial e de prestação de serviços.\n\nSua atuação abrange o contencioso, o consultivo e o planejamento tributário e empresarial, com experiência consistente tanto nas esferas administrativa quanto judicial, assessorando empresas em demandas de alta complexidade e relevância econômica.\n\nEspecialista em Direito Tributário pelo INSPER/SP, instituição na qual também concluiu as formações em Contabilidade para Não Contadores, Compliance e Reforma Tributária – IVA no Brasil, possui ainda especialização em Direito Tributário e Contabilidade Tributária pelo IBET.\n\nAtualmente, cursa pós-graduação em Direito Societário no Instituto Luiz Mário Moutinho/PE, ampliando sua atuação voltada à eficiência estratégica de negócios.",
     email: "estevan@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://br.linkedin.com/in/estevan-de-barros-lins-301a4667",
+    phone: "(81) 9.8944-3214",
+    photo: estevanPhoto
   },
   {
     name: "Arthur Rodrigues da Costa Neves",
@@ -40,8 +53,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Portuário", "Direito Administrativo"],
     description: "Sócio e coordenador da área de Direito Regulatório do Lins Neves Advocacia. Especializado em Direito Administrativo pela Universidade Federal de Pernambuco (UFPE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS), desenvolve sua atuação com ênfase em infraestrutura, parcerias público-privadas e inovação tecnológica.\n\nNo setor público, exerce o cargo de Conselheiro Fiscal em duas autoridades portuárias brasileiras, com mandato até 2027. Atuou como Diretor do Complexo Industrial Portuário de Suape, onde liderou iniciativas estratégicas de inteligência de mercado, incluindo a implementação do Estudo de Complexidade Econômica em parceria com a UNCTAD/ONU.\n\nAo longo de sua trajetória, esteve à frente da consolidação de projetos portuários e industriais que superam R$ 5 bilhões em investimentos privados, contribuindo de forma decisiva para o fortalecimento da infraestrutura logística e para o desenvolvimento econômico sustentável do setor.",
     email: "arthurneves@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://br.linkedin.com/in/arthur-neves-508451101",
+    phone: "(81) 9.8944-3214",
+    photo: arthurPhoto
   },
   // Heads
   {
@@ -52,8 +66,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Trabalhista"],
     description: "É advogada e Head da área Trabalhista no escritório Lins Neves Advocacia, possui mais de 12 anos de experiência no Direito do Trabalho.\n\nSua carreira foi construída em renomados escritórios, consolidando ampla expertise na assessoria jurídica trabalhista empresarial, com atuação estratégica na defesa de interesses patronais.\n\nCom experiência na condução e gestão de mais de 30 jurídicos trabalhistas de empresas de diversos segmentos, Ana Carolina destaca-se pela liderança na coordenação de equipes e pela busca constante de excelência técnica.\n\nÉ graduada em Direito pela Universidade Católica de Pernambuco (UNICAP), pós-graduada em Direito Processual Civil e do Trabalho pela Escola Superior da Magistratura Trabalhista (ESMATRA) e membra da Comissão de Direito do Trabalho da OAB/PE.",
     email: "carolinaaraujo@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://linkedin.com/in/ana-carolina-araújo-780703263",
+    phone: "(81) 9.8944-3214",
+    photo: anaCarolinaAraujoPhoto
   },
   {
     name: "Ana Carolina Carvalho",
@@ -63,8 +78,8 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Tributário", "Direito Aduaneiro"],
     description: "Advogada especialista em Direito Administrativo, com mais de 20 anos de experiência na advocacia, com prática em assessoria empresarial e mais de 10 anos de atuação dedicada ao Direito Administrativo.\n\nGraduada em Direito pela Universidade Católica de Pernambuco (UNICAP), possui sólida trajetória em demandas judiciais e ampla experiência em processos administrativos, notadamente em licitações, contratos administrativos, concessões comuns, parcerias público-privadas e assuntos relacionados a agentes públicos.\n\nDetém Mestrado em Direito pela Universidade Federal de Pernambuco (UFPE), na linha de pesquisa Estado, Regulação e Tributação Indutora, além de Especialização em Direito Administrativo pela mesma instituição.\n\nAtua também na área acadêmica como Professora de Direito Constitucional, Direito Administrativo, Direito Financeiro e disciplinas correlatas na Faculdade Nova Roma, em Recife/PE.",
     email: "carolinacarvalho@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    phone: "(81) 9.8944-3214",
+    photo: anaCarolinaCarvalhoPhoto
   },
   {
     name: "Angélika Souza Veríssimo da Costa",
@@ -74,8 +89,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Administrativo"],
     description: "Advogada especialista em Direito Administrativo, com mais de 20 anos de experiência na advocacia, com prática em assessoria empresarial e mais de 10 anos de atuação dedicada ao Direito Administrativo.\n\nGraduada em Direito pela Universidade Católica de Pernambuco (UNICAP), possui sólida trajetória em demandas judiciais e ampla experiência em processos administrativos, notadamente em licitações, contratos administrativos, concessões comuns, parcerias público-privadas e assuntos relacionados a agentes públicos.\n\nDetém Mestrado em Direito pela Universidade Federal de Pernambuco (UFPE), na linha de pesquisa Estado, Regulação e Tributação Indutora, além de Especialização em Direito Administrativo pela mesma instituição.\n\nExerceu funções estratégicas na Administração Pública, incluindo a atuação como Superintendente de Planejamento e Orçamento da Fundação de Atendimento Socioeducativo de Pernambuco (FUNASE) e como Assessora Jurídica da Secretaria de Saúde do Município de Abreu e Lima.",
     email: "Angelika.souza@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://www.linkedin.com/in/angelika-verissimo-32719726a",
+    phone: "(81) 9.8944-3214",
+    photo: angelikaPhoto
   },
   {
     name: "Damaris T. Cavalcanti Maciel",
@@ -85,8 +101,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Contencioso Cível", "Direito Contratual", "Direito Empresarial", "Marcas e Patentes", "Recuperação Judicial"],
     description: "Responsável pela gestão da Área Cível do Lins Neves Advocacia, atuando de forma estratégica na condução de demandas complexas e na coordenação das operações jurídicas do setor.\n\nGraduada em Direito e pós-graduada em Direito Civil e Empresarial pela Faculdade de Direito do Recife – UFPE, reúne mais de uma década de experiência na área.\n\nSua atuação envolve a condução de casos cíveis e empresariais tanto no consultivo quanto no contencioso, unindo rigor técnico, visão analítica e capacidade de gestão. Damaris lidera a equipe do departamento cível, estruturando fluxos de trabalho, padronizando procedimentos e assegurando a eficiência e a qualidade nos atendimentos.\n\nCom forte orientação para resultados, Damaris atua na integração entre técnica jurídica, gestão e eficiência operacional, contribuindo diretamente para a excelência e a solidez institucional do setor cível do escritório.",
     email: "damariscavalcanti@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://br.linkedin.com/in/damaris-cavalcanti-42422290",
+    phone: "(81) 9.8944-3214",
+    photo: damarisPhoto
   },
   {
     name: "Tibério Almeida Leite",
@@ -96,8 +113,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Imobiliário", "Direito Societário", "Direito Empresarial", "Recuperação Judicial e Falência", "Marcas e Patentes"],
     description: "Responsável pelas áreas Societária, Imobiliária, Contratual, Recuperação Judicial e Falência do Lins Neves Advocacia, atuando de forma estratégica na condução de operações empresariais e na orientação jurídica de negócios de alta complexidade.\n\nAdvogado inscrito na OAB/AL e OAB/PE, com formação e especialização voltadas ao Direito Imobiliário e Empresarial. Bacharel em Direito pela Universidade Estácio de Alagoas, é pós-graduado em Advocacia Imobiliária e Negocial pela EBRADI e possui LL.M. em Direito e Mercado Imobiliário pelo Instituto Luiz Mário Moutinho.\n\nSua experiência engloba a estruturação de operações imobiliárias complexas, regularizações fundiárias, contratos empresariais, operações built to suit, locações corporativas, projetos de arrendamentos portuários e disputas envolvendo empreendimentos logísticos e industriais.\n\nÉ membro do IBRADIM, Administrador Judicial credenciado ao Tribunal de Justiça de Alagoas e integrante da Comissão de Direito Aduaneiro e Comércio Exterior (CODACE) da OAB/PE.",
     email: "tiberioleite@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://www.linkedin.com/in/tiberioleite/",
+    phone: "(81) 9.8944-3214",
+    photo: tiberioPhoto
   },
   // Advogados
   {
@@ -108,8 +126,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Empresarial", "Direito Contratual", "Marcas e Patentes", "Direito Societário", "Recuperação Judicial e Falência"],
     description: "Bacharel em Direito pela Universidade Católica de Pernambuco (UNICAP), Especialista em Direito Contratual pela Faculdade de Direito do Recife (UFPE/FDR), aluno da Escola de Formação em Advocacia Empresarial (EFAE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS).\n\nSua atuação é dedicada ao Direito Empresarial, com experiência em fusões e aquisições de empresas, condução de processos de due diligence, estruturação e reorganizações societárias, resolução de conflitos entre sócios, recuperações judiciais e assessoramento na implementação de novos negócios, sempre com foco em segurança jurídica e governança corporativa.\n\nPossui experiência na atuação em departamentos jurídicos de empresas multinacionais, envolvendo a negociação e gestão de contratos complexos em âmbito internacional, participação em operações societárias transnacionais, análise e mitigação de riscos empresariais, resolução de demandas corporativas e suporte técnico em litígios cíveis.",
     email: "marcospecht@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://www.linkedin.com/in/marco-bel%C3%A9m-specht-aa1536175/",
+    phone: "(81) 9.8944-3214",
+    photo: marcoPhoto
   },
   {
     name: "Laila Mirella Fonsêca de Oliveira Marques",
@@ -119,8 +138,9 @@ const teamMembers: TeamMember[] = [
     areas: ["Direito Tributário"],
     description: "Formada em Direito pela Universidade Federal de Pernambuco (UFPE) em 2023, atua na área tributária desde o início de sua trajetória, com experiência tanto no consultivo quanto no contencioso.\n\nFluente em inglês, possui formação acadêmica bilíngue, fruto do ensino médio americano cursado em parceria com a Texas Tech University e de intercâmbio no Reino Unido.",
     email: "lailamarques@linsneves.adv.br",
-    linkedin: "#",
-    phone: "(81) 9.8944-3214"
+    linkedin: "https://www.linkedin.com/in/laila-marques-7981b31b9",
+    phone: "(81) 9.8944-3214",
+    photo: lailaPhoto
   }
 ];
 
@@ -132,7 +152,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     >
       <div className="relative mb-4">
         <Avatar className="w-36 h-36 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
-          <AvatarImage src="" alt={member.name} />
+          <AvatarImage src={member.photo} alt={member.name} className="object-cover" />
           <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
@@ -154,15 +174,17 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
         >
           <Mail className="w-5 h-5" />
         </a>
-        <a 
-          href={member.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="text-accent hover:text-primary transition-colors"
-        >
-          <Linkedin className="w-5 h-5" />
-        </a>
+        {member.linkedin && (
+          <a 
+            href={member.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-accent hover:text-primary transition-colors"
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
+        )}
       </div>
     </div>
   );
@@ -181,7 +203,7 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-4">
             <Avatar className="w-32 h-32 ring-4 ring-primary/20">
-              <AvatarImage src="" alt={member.name} />
+              <AvatarImage src={member.photo} alt={member.name} className="object-cover" />
               <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-3xl font-medium">
                 {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
               </AvatarFallback>
@@ -204,15 +226,17 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
                 <span>{member.phone}</span>
               </a>
               
-              <a 
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
-              >
-                <Linkedin className="w-4 h-4" />
-                <span>LinkedIn</span>
-              </a>
+              {member.linkedin && (
+                <a 
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                </a>
+              )}
             </div>
           </div>
           
@@ -257,6 +281,11 @@ const TeamPage = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleMemberClick = (member: TeamMember) => {
     setSelectedMember(member);
     setIsModalOpen(true);
@@ -276,14 +305,17 @@ const TeamPage = () => {
       <Navigation />
       
       <main 
-        className="pt-32 pb-20"
+        className="pt-32 pb-20 relative"
         style={{ 
-          backgroundImage: `url(${bgTexture})`,
+          backgroundImage: `url(${marbleTexture})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
         }}
       >
-        <div className="container mx-auto px-4">
+        <div className="absolute inset-0 bg-white/80" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <Link 
             to="/"
             className="inline-flex items-center gap-2 text-accent hover:text-primary transition-colors mb-8"
@@ -301,14 +333,13 @@ const TeamPage = () => {
 
           {/* Sócios */}
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-primary mb-8 flex items-center gap-3">
-              <span className="w-12 h-[2px] bg-accent"></span>
+            <h2 className="text-2xl font-bold text-primary mb-8 pb-2 border-b-2 border-accent/30">
               Sócios
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
               {socios.map((member, index) => (
                 <TeamMemberCard 
-                  key={index} 
+                  key={index}
                   member={member} 
                   onClick={() => handleMemberClick(member)}
                 />
@@ -318,14 +349,13 @@ const TeamPage = () => {
 
           {/* Heads */}
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-primary mb-8 flex items-center gap-3">
-              <span className="w-12 h-[2px] bg-accent"></span>
-              Heads
+            <h2 className="text-2xl font-bold text-primary mb-8 pb-2 border-b-2 border-accent/30">
+              Heads de Área
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
               {heads.map((member, index) => (
                 <TeamMemberCard 
-                  key={index} 
+                  key={index}
                   member={member} 
                   onClick={() => handleMemberClick(member)}
                 />
@@ -334,15 +364,14 @@ const TeamPage = () => {
           </section>
 
           {/* Advogados */}
-          <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-primary mb-8 flex items-center gap-3">
-              <span className="w-12 h-[2px] bg-accent"></span>
+          <section>
+            <h2 className="text-2xl font-bold text-primary mb-8 pb-2 border-b-2 border-accent/30">
               Advogados
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
               {advogados.map((member, index) => (
                 <TeamMemberCard 
-                  key={index} 
+                  key={index}
                   member={member} 
                   onClick={() => handleMemberClick(member)}
                 />

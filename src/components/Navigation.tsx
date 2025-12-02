@@ -20,7 +20,7 @@ const offices = [
   },
   {
     city: "BRASÍLIA",
-    phone: "+55 (61) 9.9999-9999",
+    phone: "+55 (81) 9.8944-3214",
     mapUrl: "https://maps.google.com/?q=Brasilia+DF"
   }
 ];

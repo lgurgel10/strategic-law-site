@@ -8,6 +8,10 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo-lins-neves.png";
 import bgVideo from "@/assets/bg-video.mp4";
 
+const WHATSAPP_NUMBER = "5581989443214";
+const LINKEDIN_URL = "https://br.linkedin.com/company/barroslinsadvogados";
+const INSTAGRAM_URL = "https://www.instagram.com/barroslinsadvogados";
+
 const Contact = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
   const [selectedOffice, setSelectedOffice] = useState<string | null>(null);
@@ -21,7 +25,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const whatsappMessage = `Olá! Meu nome é ${formData.name}.%0A%0AEmail: ${formData.email}%0ATelefone: ${formData.phone}%0A%0AMensagem: ${formData.message}`;
-    window.open(`https://wa.me/?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, '_blank');
   };
 
   const offices = [
@@ -31,7 +35,7 @@ const Contact = () => {
       address: "Empresarial Janete Costa, Rua Padre Carapuceiro, 968 - Sala 2001 a 2003",
       city: "Boa Viagem",
       cep: "CEP 51020-280",
-      phone: "+55 (81) 3241-2500",
+      phone: "+55 (81) 9.8944-3214",
       mapUrl: "https://maps.google.com"
     },
     {
@@ -40,7 +44,7 @@ const Contact = () => {
       address: "Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501",
       city: "Asa Sul – Brasília/DF",
       cep: "CEP 70316-102",
-      phone: "+55 (61) 3224-4200",
+      phone: "+55 (81) 9.8944-3214",
       mapUrl: "https://maps.google.com"
     }
   ];
@@ -131,7 +135,7 @@ const Contact = () => {
 
             <div className="flex items-center justify-center gap-6">
               <a
-                href="https://linkedin.com"
+                href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"
@@ -139,7 +143,7 @@ const Contact = () => {
                 <Linkedin className="w-6 h-6 text-white" />
               </a>
               <a
-                href="https://instagram.com"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"

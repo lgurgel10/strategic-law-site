@@ -1,6 +1,10 @@
-import { Linkedin, MessageCircle } from "lucide-react";
+import { Linkedin, MessageCircle, Instagram } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo-lins-neves.png";
+
+const WHATSAPP_NUMBER = "5581989443214";
+const LINKEDIN_URL = "https://br.linkedin.com/company/barroslinsadvogados";
+const INSTAGRAM_URL = "https://www.instagram.com/barroslinsadvogados";
 
 const Footer = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
@@ -23,15 +27,52 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Links Rápidos */}
-          <div>
-            <h4 className="font-semibold mb-4">Links Rápidos</h4>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li><a href="#about" className="hover:text-accent transition-colors">Quem Somos</a></li>
-              <li><a href="#practice-areas" className="hover:text-accent transition-colors">Áreas de Atuação</a></li>
-              <li><a href="#team" className="hover:text-accent transition-colors">Equipe</a></li>
-              <li><a href="#contact" className="hover:text-accent transition-colors">Contato</a></li>
-            </ul>
+          {/* Links Rápidos + Contato */}
+          <div className="space-y-8">
+            {/* Links Rápidos */}
+            <div>
+              <h4 className="font-semibold mb-4">Links Rápidos</h4>
+              <ul className="space-y-2 text-sm text-white/80">
+                <li><a href="#about" className="hover:text-accent transition-colors">Quem Somos</a></li>
+                <li><a href="#practice-areas" className="hover:text-accent transition-colors">Áreas de Atuação</a></li>
+                <li><a href="#team" className="hover:text-accent transition-colors">Equipe</a></li>
+                <li><a href="#contact" className="hover:text-accent transition-colors">Contato</a></li>
+              </ul>
+            </div>
+
+            {/* Contato */}
+            <div>
+              <h4 className="font-semibold mb-4">Contato</h4>
+              <div className="flex flex-col gap-3">
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span className="text-sm">WhatsApp</span>
+                </a>
+                <a 
+                  href={LINKEDIN_URL}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                  <span className="text-sm">LinkedIn</span>
+                </a>
+                <a 
+                  href={INSTAGRAM_URL}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span className="text-sm">Instagram</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Localização */}
@@ -49,31 +90,6 @@ const Footer = () => {
                 <p>Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501</p>
                 <p>Asa Sul – Brasília/DF - CEP 70316-102</p>
               </div>
-            </div>
-          </div>
-
-          {/* Contato e Social */}
-          <div>
-            <h4 className="font-semibold mb-4">Contato</h4>
-            <div className="flex flex-col gap-4">
-              <a 
-                href="https://wa.me/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-                <span className="text-sm">WhatsApp</span>
-              </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-                <span className="text-sm">LinkedIn</span>
-              </a>
             </div>
           </div>
         </div>
