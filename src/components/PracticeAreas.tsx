@@ -1,7 +1,6 @@
 import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import bgTexture from "@/assets/bg-texture.jpg";
 
 const practiceAreas = [
   { icon: FileText, name: "Estruturação de Contratos de Grande Porte", description: "Contratos complexos e estratégicos para seu negócio" },
@@ -23,11 +22,6 @@ const PracticeAreas = () => {
       id="practice-areas" 
       className="py-20 relative" 
       ref={ref}
-      style={{ 
-        backgroundImage: `url(${bgTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}
     >
       <div className="container mx-auto px-4">
         <h2 className={`text-4xl md:text-5xl font-bold mb-2 text-primary transition-all duration-700 ${
