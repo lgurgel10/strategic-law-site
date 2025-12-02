@@ -133,12 +133,12 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   return (
     <div 
       onClick={onClick}
-      className="group cursor-pointer flex flex-col items-center text-center px-1 md:px-4 w-full"
+      className="group cursor-pointer flex flex-col items-center text-center px-2 md:px-4 w-full py-4"
     >
-      <div className="relative mb-3 md:mb-4 flex-shrink-0">
-        <Avatar className="w-24 h-24 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
+      <div className="relative mb-3 md:mb-4 flex-shrink-0 p-1">
+        <Avatar className="w-20 h-20 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
           <AvatarImage src="" alt={member.name} />
-          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-xl md:text-2xl font-medium">
+          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg md:text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
         </Avatar>
@@ -292,7 +292,7 @@ const Team = () => {
         </p>
 
         {/* Carousel */}
-        <div className={`max-w-6xl mx-auto mb-12 px-8 md:px-12 transition-all duration-700 delay-200 ${
+        <div className={`max-w-6xl mx-auto mb-12 px-12 md:px-16 transition-all duration-700 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <Carousel
@@ -305,11 +305,11 @@ const Team = () => {
                 delay: 4000,
               }),
             ]}
-            className="w-full overflow-hidden"
+            className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-4">
+            <CarouselContent className="-ml-2 md:-ml-4 overflow-visible">
               {teamMembers.map((member, index) => (
-                <CarouselItem key={index} className="pl-4 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5 overflow-visible">
                   <TeamMemberCard 
                     member={member} 
                     onClick={() => handleMemberClick(member)}
@@ -317,8 +317,8 @@ const Team = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -left-2 md:-left-10" />
-            <CarouselNext className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -right-2 md:-right-10" />
+            <CarouselPrevious className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -left-10 md:-left-12" />
+            <CarouselNext className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -right-10 md:-right-12" />
           </Carousel>
         </div>
 
