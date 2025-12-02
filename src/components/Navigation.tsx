@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo-lins-neves.png";
+import logoAzul from "@/assets/logo-lins-neves-azul.png";
 
 const navItems = [
   { label: "Início", href: "#hero" },
@@ -73,7 +74,7 @@ const Navigation = () => {
               }}
             >
               <img 
-                src={logo} 
+                src={isScrolled ? logoAzul : logo} 
                 alt="Lins Neves" 
                 className="h-12 w-auto cursor-pointer"
                 onClick={() => scrollToSection('#hero')}
