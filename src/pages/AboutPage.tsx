@@ -70,10 +70,6 @@ const AboutPage = () => {
                   O <strong className="text-primary">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong className="text-accent">hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
                 </p>
 
-                <p className="text-lg leading-relaxed mt-6">
-                  Nossa abordagem integra expertise jurídica de alto nível com inteligência estratégica de negócios, permitindo que nossos clientes não apenas resolvam questões legais, mas transformem desafios em oportunidades de crescimento sustentável.
-                </p>
-
                 <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Nossa Missão</h2>
                 <p className="text-lg leading-relaxed">
                   Oferecer soluções jurídicas estratégicas e personalizadas que impulsionem o crescimento dos negócios dos nossos clientes, combinando excelência técnica com uma visão empresarial integrada.
