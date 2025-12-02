@@ -133,31 +133,31 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   return (
     <div 
       onClick={onClick}
-      className="group cursor-pointer flex flex-col items-center text-center px-2 md:px-4"
+      className="group cursor-pointer flex flex-col items-center text-center px-1 md:px-4 w-full"
     >
-      <div className="relative mb-2 md:mb-4">
-        <Avatar className="w-20 h-20 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
+      <div className="relative mb-3 md:mb-4 flex-shrink-0">
+        <Avatar className="w-24 h-24 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
           <AvatarImage src="" alt={member.name} />
-          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg md:text-2xl font-medium">
+          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-xl md:text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
         </Avatar>
       </div>
       
-      <h3 className="text-xs md:text-base lg:text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-0.5 md:mb-1 line-clamp-2">
+      <h3 className="text-sm md:text-base lg:text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-1 md:mb-1 line-clamp-2 px-1">
         {member.name}
       </h3>
-      <p className="text-muted-foreground text-[10px] md:text-sm mb-1 md:mb-3 line-clamp-1">{member.role}</p>
+      <p className="text-muted-foreground text-xs md:text-sm mb-2 md:mb-3 line-clamp-2 px-1">{member.role}</p>
       
-      <p className="text-primary text-[10px] md:text-sm mb-1 md:mb-3 hidden md:block">{member.phone}</p>
+      <p className="text-primary text-xs md:text-sm mb-2 md:mb-3 hidden md:block">{member.phone}</p>
       
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex items-center gap-3 md:gap-3">
         <a 
           href={`mailto:${member.email}`}
           onClick={(e) => e.stopPropagation()}
           className="text-accent hover:text-primary transition-colors"
         >
-          <Mail className="w-3 h-3 md:w-5 md:h-5" />
+          <Mail className="w-4 h-4 md:w-5 md:h-5" />
         </a>
         <a 
           href={member.linkedin}
@@ -166,7 +166,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
           onClick={(e) => e.stopPropagation()}
           className="text-accent hover:text-primary transition-colors"
         >
-          <Linkedin className="w-3 h-3 md:w-5 md:h-5" />
+          <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
         </a>
       </div>
     </div>
@@ -292,7 +292,7 @@ const Team = () => {
         </p>
 
         {/* Carousel */}
-        <div className={`max-w-6xl mx-auto mb-12 transition-all duration-700 delay-200 ${
+        <div className={`max-w-6xl mx-auto mb-12 px-8 md:px-12 transition-all duration-700 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <Carousel
@@ -305,11 +305,11 @@ const Team = () => {
                 delay: 4000,
               }),
             ]}
-            className="w-full"
+            className="w-full overflow-hidden"
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
+            <CarouselContent className="-ml-4 md:-ml-4">
               {teamMembers.map((member, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
+                <CarouselItem key={index} className="pl-4 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
                   <TeamMemberCard 
                     member={member} 
                     onClick={() => handleMemberClick(member)}
@@ -317,8 +317,8 @@ const Team = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -left-4 md:-left-14" />
-            <CarouselNext className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -right-4 md:-right-14" />
+            <CarouselPrevious className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -left-2 md:-left-10" />
+            <CarouselNext className="bg-transparent text-accent hover:text-primary hover:bg-transparent border-none h-12 w-12 -right-2 md:-right-10" />
           </Carousel>
         </div>
 
