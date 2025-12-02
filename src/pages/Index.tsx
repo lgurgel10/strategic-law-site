@@ -8,6 +8,7 @@ import Insights from "@/components/Insights";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import marbleTexture from "@/assets/marble-texture.jpg";
 
 const Index = () => {
   return (
@@ -16,8 +17,19 @@ const Index = () => {
       <Hero />
       <Credentials />
       <About />
-      <PracticeAreas />
-      <Team />
+      {/* Shared background for PracticeAreas and Team */}
+      <div 
+        className="relative"
+        style={{ 
+          backgroundImage: `url(${marbleTexture})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <PracticeAreas />
+        <Team />
+      </div>
       <Insights />
       <Contact />
       <Footer />

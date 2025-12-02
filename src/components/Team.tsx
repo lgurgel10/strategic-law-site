@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Linkedin, Mail, Phone, ArrowLeft, ArrowRight } from "lucide-react";
+import { Linkedin, Mail, Phone, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,8 +12,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import bgTexture from "@/assets/bg-texture.jpg";
-
 interface TeamMember {
   name: string;
   role: string;
@@ -135,31 +133,31 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   return (
     <div 
       onClick={onClick}
-      className="group cursor-pointer flex flex-col items-center text-center px-4"
+      className="group cursor-pointer flex flex-col items-center text-center px-2 md:px-4"
     >
-      <div className="relative mb-4">
-        <Avatar className="w-32 h-32 md:w-40 md:h-40 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
+      <div className="relative mb-2 md:mb-4">
+        <Avatar className="w-20 h-20 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
           <AvatarImage src="" alt={member.name} />
-          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-2xl font-medium">
+          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg md:text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
         </Avatar>
       </div>
       
-      <h3 className="text-base md:text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-1">
+      <h3 className="text-xs md:text-base lg:text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-0.5 md:mb-1 line-clamp-2">
         {member.name}
       </h3>
-      <p className="text-muted-foreground text-sm mb-3">{member.role}</p>
+      <p className="text-muted-foreground text-[10px] md:text-sm mb-1 md:mb-3 line-clamp-1">{member.role}</p>
       
-      <p className="text-primary text-sm mb-3">{member.phone}</p>
+      <p className="text-primary text-[10px] md:text-sm mb-1 md:mb-3 hidden md:block">{member.phone}</p>
       
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 md:gap-3">
         <a 
           href={`mailto:${member.email}`}
           onClick={(e) => e.stopPropagation()}
           className="text-accent hover:text-primary transition-colors"
         >
-          <Mail className="w-5 h-5" />
+          <Mail className="w-3 h-3 md:w-5 md:h-5" />
         </a>
         <a 
           href={member.linkedin}
@@ -168,7 +166,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
           onClick={(e) => e.stopPropagation()}
           className="text-accent hover:text-primary transition-colors"
         >
-          <Linkedin className="w-5 h-5" />
+          <Linkedin className="w-3 h-3 md:w-5 md:h-5" />
         </a>
       </div>
     </div>
@@ -280,11 +278,6 @@ const Team = () => {
       id="team" 
       className="py-20 relative overflow-hidden" 
       ref={ref}
-      style={{ 
-        backgroundImage: `url(${bgTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}
     >
       <div className="container mx-auto px-4 relative z-10">
         <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
@@ -335,9 +328,12 @@ const Team = () => {
         }`}>
           <Link 
             to="/equipe"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-white rounded-full hover:bg-accent/90 transition-all duration-300 text-base font-medium"
+            className="group inline-flex items-center gap-3 text-primary hover:text-accent transition-all duration-300"
           >
-            Conheça toda nossa equipe
+            <span className="text-lg font-medium border-b-2 border-primary group-hover:border-accent transition-colors duration-300">
+              Conheça toda nossa equipe
+            </span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
           </Link>
         </div>
       </div>
