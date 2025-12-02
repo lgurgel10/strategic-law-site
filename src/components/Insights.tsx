@@ -16,7 +16,7 @@ const articles: Article[] = [
   {
     title: "O Futuro das Concessões e PPPs no Brasil",
     description: "Análise das novas oportunidades de parcerias público-privadas e modelagens inovadoras para infraestrutura.",
-    date: "15 de Janeiro, 2025",
+    date: "18 de Março, 2024",
     category: "Direito Administrativo",
     fullContent: `O cenário das concessões e Parcerias Público-Privadas (PPPs) no Brasil atravessa um momento de transformação significativa. Com a crescente demanda por investimentos em infraestrutura e a limitação de recursos públicos, essas modalidades contratuais se tornam cada vez mais estratégicas para o desenvolvimento nacional.
 
@@ -29,7 +29,7 @@ O desafio que se apresenta para o futuro é consolidar um ambiente regulatório 
   {
     title: "Impacto da Reforma Tributária em Fusões e Aquisições",
     description: "Como as mudanças tributárias estão transformando o mercado de M&A e as estratégias das empresas.",
-    date: "10 de Janeiro, 2025",
+    date: "15 de Outubro, 2025",
     category: "Direito Empresarial",
     fullContent: `A Reforma Tributária aprovada recentemente representa uma mudança paradigmática no sistema tributário brasileiro, com impactos profundos nas operações de fusões e aquisições (M&A). A transição para o modelo de Imposto sobre Valor Agregado (IVA) dual demanda uma reavaliação completa das estratégias corporativas.
 
@@ -44,7 +44,7 @@ Para investidores e empresas, o momento atual exige uma abordagem proativa e est
   {
     title: "Smart Cities: O Papel do Direito na Inovação Urbana",
     description: "Aspectos jurídicos e regulatórios da implementação de tecnologias inteligentes nas cidades brasileiras.",
-    date: "5 de Janeiro, 2025",
+    date: "22 de Julho, 2024",
     category: "Direito Urbanístico",
     fullContent: `O conceito de Smart Cities ou Cidades Inteligentes representa uma evolução significativa na forma como pensamos o desenvolvimento urbano. A integração de tecnologias de informação e comunicação (TICs) na gestão urbana traz consigo um conjunto complexo de questões jurídicas que demandam atenção especializada.
 

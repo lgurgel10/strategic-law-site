@@ -12,13 +12,13 @@ const Footer = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           {/* Brand */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <img 
               src={logo} 
               alt="Lins Neves Advocacia" 
               className="mb-4 w-48 h-auto"
             />
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/80 text-sm leading-relaxed text-center md:text-left">
               Hub de negócios com expertise jurídica e inteligência estratégica para o crescimento empresarial.
             </p>
           </div>
@@ -28,7 +28,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Links Rápidos</h4>
             <ul className="space-y-2 text-sm text-white/80">
               <li><a href="#about" className="hover:text-accent transition-colors">Quem Somos</a></li>
-              <li><a href="#practice-areas" className="hover:text-accent transition-colors">Eixos de Atuação</a></li>
+              <li><a href="#practice-areas" className="hover:text-accent transition-colors">Áreas de Atuação</a></li>
               <li><a href="#team" className="hover:text-accent transition-colors">Equipe</a></li>
               <li><a href="#contact" className="hover:text-accent transition-colors">Contato</a></li>
             </ul>

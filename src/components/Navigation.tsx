@@ -6,9 +6,8 @@ import logoAzul from "@/assets/logo-lins-neves-azul.png";
 const navItems = [
   { label: "Início", href: "#hero" },
   { label: "Quem Somos", href: "#about" },
-  { label: "Eixos de Atuação", href: "#practice-areas" },
+  { label: "Áreas de Atuação", href: "#practice-areas" },
   { label: "Equipe", href: "#team" },
-  { label: "Projetos", href: "#impact" },
   { label: "Insights", href: "#insights" },
   { label: "Contato", href: "#contact" }
 ];
