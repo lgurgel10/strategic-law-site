@@ -1,60 +1,293 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Linkedin } from "lucide-react";
+import { useState } from "react";
+import { Linkedin, Mail, Phone, X, Globe } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const teamMembers = [
+interface TeamMember {
+  name: string;
+  role: string;
+  category: "socio" | "head" | "advogado";
+  languages: string[];
+  areas: string[];
+  description: string;
+  email: string;
+  linkedin: string;
+  phone: string;
+}
+
+const teamMembers: TeamMember[] = [
+  // Sócios
   {
-    name: "Dr. João Lins",
+    name: "Estevan De Barros Lins",
     role: "Sócio Fundador",
-    linkedin: "#"
+    category: "socio",
+    languages: ["Português"],
+    areas: ["Direito Empresarial", "Direito Tributário"],
+    description: "Sócio-fundador do Lins Neves Advocacia, é formado pela Faculdade Boa Viagem (FBV) e atua há mais de 8 anos na condução estratégica das áreas tributária e empresarial do escritório, com presença marcante nos setores industrial, comercial e de prestação de serviços.\n\nSua atuação abrange o contencioso, o consultivo e o planejamento tributário e empresarial, com experiência consistente tanto nas esferas administrativa quanto judicial, assessorando empresas em demandas de alta complexidade e relevância econômica.\n\nEspecialista em Direito Tributário pelo INSPER/SP, instituição na qual também concluiu as formações em Contabilidade para Não Contadores, Compliance e Reforma Tributária – IVA no Brasil, possui ainda especialização em Direito Tributário e Contabilidade Tributária pelo IBET.\n\nAtualmente, cursa pós-graduação em Direito Societário no Instituto Luiz Mário Moutinho/PE, ampliando sua atuação voltada à eficiência estratégica de negócios.",
+    email: "estevan@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   },
   {
-    name: "Dr. Ricardo Neves",
-    role: "Sócio Fundador",
-    linkedin: "#"
+    name: "Arthur Rodrigues da Costa Neves",
+    role: "Sócio",
+    category: "socio",
+    languages: ["Português"],
+    areas: ["Direito Portuário", "Direito Administrativo"],
+    description: "Sócio e coordenador da área de Direito Regulatório do Lins Neves Advocacia. Especializado em Direito Administrativo pela Universidade Federal de Pernambuco (UFPE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS), desenvolve sua atuação com ênfase em infraestrutura, parcerias público-privadas e inovação tecnológica.\n\nNo setor público, exerce o cargo de Conselheiro Fiscal em duas autoridades portuárias brasileiras, com mandato até 2027. Atuou como Diretor do Complexo Industrial Portuário de Suape, onde liderou iniciativas estratégicas de inteligência de mercado, incluindo a implementação do Estudo de Complexidade Econômica em parceria com a UNCTAD/ONU.\n\nAo longo de sua trajetória, esteve à frente da consolidação de projetos portuários e industriais que superam R$ 5 bilhões em investimentos privados, contribuindo de forma decisiva para o fortalecimento da infraestrutura logística e para o desenvolvimento econômico sustentável do setor.",
+    email: "arthurneves@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
+  },
+  // Heads
+  {
+    name: "Ana Carolina Cavalcante Araújo",
+    role: "Head da Área Trabalhista",
+    category: "head",
+    languages: ["Português", "Espanhol", "Inglês"],
+    areas: ["Direito Trabalhista"],
+    description: "É advogada e Head da área Trabalhista no escritório Lins Neves Advocacia, possui mais de 12 anos de experiência no Direito do Trabalho.\n\nSua carreira foi construída em renomados escritórios, consolidando ampla expertise na assessoria jurídica trabalhista empresarial, com atuação estratégica na defesa de interesses patronais.\n\nCom experiência na condução e gestão de mais de 30 jurídicos trabalhistas de empresas de diversos segmentos, Ana Carolina destaca-se pela liderança na coordenação de equipes e pela busca constante de excelência técnica.\n\nÉ graduada em Direito pela Universidade Católica de Pernambuco (UNICAP), pós-graduada em Direito Processual Civil e do Trabalho pela Escola Superior da Magistratura Trabalhista (ESMATRA) e membra da Comissão de Direito do Trabalho da OAB/PE.",
+    email: "carolinaaraujo@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   },
   {
-    name: "Dra. Ana Carolina Araújo",
-    role: "Head de Direito Trabalhista",
-    linkedin: "#"
+    name: "Ana Carolina Carvalho",
+    role: "Head da Área Tributária",
+    category: "head",
+    languages: ["Português"],
+    areas: ["Direito Tributário", "Direito Aduaneiro"],
+    description: "Advogada especialista em Direito Administrativo, com mais de 20 anos de experiência na advocacia, com prática em assessoria empresarial e mais de 10 anos de atuação dedicada ao Direito Administrativo.\n\nGraduada em Direito pela Universidade Católica de Pernambuco (UNICAP), possui sólida trajetória em demandas judiciais e ampla experiência em processos administrativos, notadamente em licitações, contratos administrativos, concessões comuns, parcerias público-privadas e assuntos relacionados a agentes públicos.\n\nDetém Mestrado em Direito pela Universidade Federal de Pernambuco (UFPE), na linha de pesquisa Estado, Regulação e Tributação Indutora, além de Especialização em Direito Administrativo pela mesma instituição.\n\nAtua também na área acadêmica como Professora de Direito Constitucional, Direito Administrativo, Direito Financeiro e disciplinas correlatas na Faculdade Nova Roma, em Recife/PE.",
+    email: "carolinacarvalho@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   },
   {
-    name: "Dr. Carlos Mendes",
-    role: "Head de Direito Administrativo",
-    linkedin: "#"
+    name: "Angélika Souza Veríssimo da Costa",
+    role: "Head da Área Administrativa",
+    category: "head",
+    languages: ["Português"],
+    areas: ["Direito Administrativo"],
+    description: "Advogada especialista em Direito Administrativo, com mais de 20 anos de experiência na advocacia, com prática em assessoria empresarial e mais de 10 anos de atuação dedicada ao Direito Administrativo.\n\nGraduada em Direito pela Universidade Católica de Pernambuco (UNICAP), possui sólida trajetória em demandas judiciais e ampla experiência em processos administrativos, notadamente em licitações, contratos administrativos, concessões comuns, parcerias público-privadas e assuntos relacionados a agentes públicos.\n\nDetém Mestrado em Direito pela Universidade Federal de Pernambuco (UFPE), na linha de pesquisa Estado, Regulação e Tributação Indutora, além de Especialização em Direito Administrativo pela mesma instituição.\n\nExerceu funções estratégicas na Administração Pública, incluindo a atuação como Superintendente de Planejamento e Orçamento da Fundação de Atendimento Socioeducativo de Pernambuco (FUNASE) e como Assessora Jurídica da Secretaria de Saúde do Município de Abreu e Lima.",
+    email: "Angelika.souza@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   },
   {
-    name: "Dra. Mariana Silva",
-    role: "Head de Compliance",
-    linkedin: "#"
+    name: "Damaris T. Cavalcanti Maciel",
+    role: "Head da Área Cível e Contratual",
+    category: "head",
+    languages: ["Português"],
+    areas: ["Contencioso Cível", "Direito Contratual", "Direito Empresarial", "Marcas e Patentes", "Recuperação Judicial"],
+    description: "Responsável pela gestão da Área Cível do Lins Neves Advocacia, atuando de forma estratégica na condução de demandas complexas e na coordenação das operações jurídicas do setor.\n\nGraduada em Direito e pós-graduada em Direito Civil e Empresarial pela Faculdade de Direito do Recife – UFPE, reúne mais de uma década de experiência na área.\n\nSua atuação envolve a condução de casos cíveis e empresariais tanto no consultivo quanto no contencioso, unindo rigor técnico, visão analítica e capacidade de gestão. Damaris lidera a equipe do departamento cível, estruturando fluxos de trabalho, padronizando procedimentos e assegurando a eficiência e a qualidade nos atendimentos.\n\nCom forte orientação para resultados, Damaris atua na integração entre técnica jurídica, gestão e eficiência operacional, contribuindo diretamente para a excelência e a solidez institucional do setor cível do escritório.",
+    email: "damariscavalcanti@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   },
   {
-    name: "Dr. Paulo Santos",
-    role: "Head de Contratos",
-    linkedin: "#"
+    name: "Tibério Almeida Leite",
+    role: "Head da Área Societária, Imobiliário e Empresarial",
+    category: "head",
+    languages: ["Português"],
+    areas: ["Direito Imobiliário", "Direito Societário", "Direito Empresarial", "Recuperação Judicial e Falência", "Marcas e Patentes"],
+    description: "Responsável pelas áreas Societária, Imobiliária, Contratual, Recuperação Judicial e Falência do Lins Neves Advocacia, atuando de forma estratégica na condução de operações empresariais e na orientação jurídica de negócios de alta complexidade.\n\nAdvogado inscrito na OAB/AL e OAB/PE, com formação e especialização voltadas ao Direito Imobiliário e Empresarial. Bacharel em Direito pela Universidade Estácio de Alagoas, é pós-graduado em Advocacia Imobiliária e Negocial pela EBRADI e possui LL.M. em Direito e Mercado Imobiliário pelo Instituto Luiz Mário Moutinho.\n\nSua experiência engloba a estruturação de operações imobiliárias complexas, regularizações fundiárias, contratos empresariais, operações built to suit, locações corporativas, projetos de arrendamentos portuários e disputas envolvendo empreendimentos logísticos e industriais.\n\nÉ membro do IBRADIM, Administrador Judicial credenciado ao Tribunal de Justiça de Alagoas e integrante da Comissão de Direito Aduaneiro e Comércio Exterior (CODACE) da OAB/PE.",
+    email: "tiberioleite@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
+  },
+  // Advogados
+  {
+    name: "Marco Belém Specht",
+    role: "Advogado",
+    category: "advogado",
+    languages: ["Português", "Inglês"],
+    areas: ["Direito Empresarial", "Direito Contratual", "Marcas e Patentes", "Direito Societário", "Recuperação Judicial e Falência"],
+    description: "Bacharel em Direito pela Universidade Católica de Pernambuco (UNICAP), Especialista em Direito Contratual pela Faculdade de Direito do Recife (UFPE/FDR), aluno da Escola de Formação em Advocacia Empresarial (EFAE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS).\n\nSua atuação é dedicada ao Direito Empresarial, com experiência em fusões e aquisições de empresas, condução de processos de due diligence, estruturação e reorganizações societárias, resolução de conflitos entre sócios, recuperações judiciais e assessoramento na implementação de novos negócios, sempre com foco em segurança jurídica e governança corporativa.\n\nPossui experiência na atuação em departamentos jurídicos de empresas multinacionais, envolvendo a negociação e gestão de contratos complexos em âmbito internacional, participação em operações societárias transnacionais, análise e mitigação de riscos empresariais, resolução de demandas corporativas e suporte técnico em litígios cíveis.",
+    email: "marcospecht@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   },
   {
-    name: "Dra. Juliana Costa",
-    role: "Head de Direito Tributário",
-    linkedin: "#"
+    name: "Laila Mirella Fonsêca de Oliveira Marques",
+    role: "Advogada",
+    category: "advogado",
+    languages: ["Português", "Inglês"],
+    areas: ["Direito Tributário"],
+    description: "Formada em Direito pela Universidade Federal de Pernambuco (UFPE) em 2023, atua na área tributária desde o início de sua trajetória, com experiência tanto no consultivo quanto no contencioso.\n\nFluente em inglês, possui formação acadêmica bilíngue, fruto do ensino médio americano cursado em parceria com a Texas Tech University e de intercâmbio no Reino Unido.",
+    email: "lailamarques@linsneves.adv.br",
+    linkedin: "#",
+    phone: "(81) 9.8944-3214"
   }
 ];
 
+const getCategoryLabel = (category: string) => {
+  switch (category) {
+    case "socio": return "Sócios";
+    case "head": return "Heads";
+    case "advogado": return "Advogados";
+    default: return "";
+  }
+};
+
+const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () => void }) => {
+  return (
+    <div 
+      onClick={onClick}
+      className="group cursor-pointer p-6 border-b border-border/30 hover:bg-primary/5 transition-all duration-300"
+    >
+      <div className="flex items-start gap-6">
+        <Avatar className="w-20 h-20 ring-2 ring-primary/20 group-hover:ring-accent/50 transition-all duration-300 shrink-0">
+          <AvatarImage src="" alt={member.name} />
+          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg font-medium">
+            {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
+          </AvatarFallback>
+        </Avatar>
+        
+        <div className="flex-1 min-w-0">
+          <h3 className="text-xl font-semibold text-primary group-hover:text-accent transition-colors duration-300">
+            {member.name}
+          </h3>
+          <p className="text-accent text-sm font-medium mt-1">{member.role}</p>
+          
+          <div className="mt-3 flex flex-wrap gap-2">
+            {member.areas.slice(0, 3).map((area, index) => (
+              <span 
+                key={index}
+                className="text-xs px-2 py-1 bg-primary/10 text-primary rounded"
+              >
+                {area}
+              </span>
+            ))}
+            {member.areas.length > 3 && (
+              <span className="text-xs px-2 py-1 text-muted-foreground">
+                +{member.areas.length - 3}
+              </span>
+            )}
+          </div>
+        </div>
+        
+        <div className="text-primary/40 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300">
+          →
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | null; isOpen: boolean; onClose: () => void }) => {
+  if (!member) return null;
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="sr-only">{member.name}</DialogTitle>
+        </DialogHeader>
+        
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Left Column - Photo and Contact */}
+          <div className="md:w-1/3 space-y-4">
+            <Avatar className="w-32 h-32 ring-4 ring-primary/20">
+              <AvatarImage src="" alt={member.name} />
+              <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-3xl font-medium">
+                {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
+              </AvatarFallback>
+            </Avatar>
+            
+            <div className="space-y-3 text-sm">
+              <a 
+                href={`mailto:${member.email}`}
+                className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span className="break-all">{member.email}</span>
+              </a>
+              
+              <a 
+                href={`tel:${member.phone.replace(/\D/g, '')}`}
+                className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                <span>{member.phone}</span>
+              </a>
+              
+              <a 
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+          
+          {/* Right Column - Details */}
+          <div className="md:w-2/3 space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold text-primary">{member.name}</h2>
+              <p className="text-accent font-medium">{member.role}</p>
+            </div>
+            
+            <div>
+              <h4 className="text-accent text-sm font-medium mb-2">Idiomas</h4>
+              <p className="text-foreground">{member.languages.join(' • ')}</p>
+            </div>
+            
+            <div>
+              <h4 className="text-accent text-sm font-medium mb-2">Áreas de atuação</h4>
+              <div className="flex flex-wrap gap-2">
+                {member.areas.map((area, index) => (
+                  <span 
+                    key={index}
+                    className="text-sm px-3 py-1 bg-primary/10 text-primary rounded"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <div className="text-foreground whitespace-pre-line leading-relaxed">
+                {member.description}
+              </div>
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 const Team = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showFullTeam, setShowFullTeam] = useState(false);
+
+  const handleMemberClick = (member: TeamMember) => {
+    setSelectedMember(member);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedMember(null);
+  };
+
+  const socios = teamMembers.filter(m => m.category === "socio");
+  const heads = teamMembers.filter(m => m.category === "head");
+  const advogados = teamMembers.filter(m => m.category === "advogado");
+
+  // For carousel, show a mix of all
+  const carouselMembers = [...socios, ...heads.slice(0, 2)];
 
   return (
     <section id="team" className="py-20 bg-background relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 animate-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       
       <div className="container mx-auto px-4 relative z-10">
         <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
@@ -62,76 +295,121 @@ const Team = () => {
         }`}>
           Equipe
         </h2>
-        <p className={`text-center text-muted-foreground mb-8 text-lg transition-all duration-700 delay-100 ${
+        <p className={`text-center text-muted-foreground mb-12 text-lg transition-all duration-700 delay-100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Experiência e Visão Integrada
         </p>
 
-        <div className={`text-center mb-12 transition-all duration-700 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <a 
-            href="#team-full" 
-            className="inline-flex items-center gap-2 text-secondary hover:text-accent transition-all duration-300 text-lg font-medium group"
-          >
-            <span className="border-b-2 border-transparent group-hover:border-accent transition-all">
-              Conheça toda nossa equipe
-            </span>
-            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-          </a>
-        </div>
+        {!showFullTeam ? (
+          <>
+            {/* Preview Cards */}
+            <div className={`max-w-4xl mx-auto mb-8 transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
+                {carouselMembers.map((member, index) => (
+                  <TeamMemberCard 
+                    key={index} 
+                    member={member} 
+                    onClick={() => handleMemberClick(member)}
+                  />
+                ))}
+              </div>
+            </div>
 
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 4000,
-              stopOnInteraction: true,
-            }),
-          ]}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className={`w-full max-w-6xl mx-auto transition-all duration-700 delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <CarouselContent className="-ml-4">
-            {teamMembers.map((member, index) => (
-              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <Card className="group shadow-elegant hover-scale overflow-hidden border-0 h-full">
-                  <CardContent className="p-6 flex flex-col items-center text-center">
-                    <Avatar className="w-32 h-32 mb-4 ring-4 ring-primary/20 group-hover:ring-secondary/40 transition-all duration-300">
-                      <AvatarImage src="" alt={member.name} />
-                      <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-white text-2xl font-bold">
-                        {member.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    
-                    <h3 className="text-xl font-bold text-primary mb-1 group-hover:text-secondary transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">{member.role}</p>
-                    
-                    <a 
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-secondary hover:text-accent transition-colors"
-                    >
-                      <Linkedin className="w-5 h-5" />
-                      <span className="text-sm">LinkedIn</span>
-                    </a>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="bg-primary text-white hover:bg-primary/90 border-none shadow-glow h-12 w-12 -left-4 md:-left-12" />
-          <CarouselNext className="bg-primary text-white hover:bg-primary/90 border-none shadow-glow h-12 w-12 -right-4 md:-right-12" />
-        </Carousel>
+            {/* CTA to see full team */}
+            <div className={`text-center transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <button 
+                onClick={() => setShowFullTeam(true)}
+                className="inline-flex items-center gap-2 text-accent hover:text-primary transition-all duration-300 text-lg font-medium group"
+              >
+                <span className="border-b-2 border-transparent group-hover:border-primary transition-all">
+                  Conheça toda nossa equipe
+                </span>
+                <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Full Team View */}
+            <div className={`max-w-4xl mx-auto transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              {/* Sócios */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
+                  <span className="w-8 h-[2px] bg-accent"></span>
+                  Sócios
+                </h3>
+                <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
+                  {socios.map((member, index) => (
+                    <TeamMemberCard 
+                      key={index} 
+                      member={member} 
+                      onClick={() => handleMemberClick(member)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Heads */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
+                  <span className="w-8 h-[2px] bg-accent"></span>
+                  Heads
+                </h3>
+                <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
+                  {heads.map((member, index) => (
+                    <TeamMemberCard 
+                      key={index} 
+                      member={member} 
+                      onClick={() => handleMemberClick(member)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Advogados */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
+                  <span className="w-8 h-[2px] bg-accent"></span>
+                  Advogados
+                </h3>
+                <div className="border border-border/30 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm">
+                  {advogados.map((member, index) => (
+                    <TeamMemberCard 
+                      key={index} 
+                      member={member} 
+                      onClick={() => handleMemberClick(member)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Back button */}
+              <div className="text-center">
+                <button 
+                  onClick={() => setShowFullTeam(false)}
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-all duration-300 text-sm"
+                >
+                  <span className="transform group-hover:-translate-x-1 transition-transform">←</span>
+                  <span>Voltar</span>
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
+
+      <TeamMemberModal 
+        member={selectedMember} 
+        isOpen={isModalOpen} 
+        onClose={handleCloseModal}
+      />
     </section>
   );
 };
