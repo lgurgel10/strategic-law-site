@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { MessageCircle } from "lucide-react";
 import logo from "@/assets/logo-lins-neves.png";
 
 const navItems = [
@@ -14,12 +13,14 @@ const navItems = [
 ];
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Calculate scroll progress (0 to 1) over the first 300px
+      const progress = Math.min(window.scrollY / 300, 1);
+      setScrollProgress(progress);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -43,6 +44,12 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  const isScrolled = scrollProgress > 0.1;
+
+  // Logo transition values
+  const logoScale = 1 - (scrollProgress * 0.6); // Scale from 1 to 0.4
+  const logoOpacity = scrollProgress > 0.5 ? 1 : 0; // Fade in header logo after 50%
+
   return (
     <>
       <nav 
@@ -56,20 +63,22 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* WhatsApp Contact Button */}
-            <a
-              href="https://wa.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                isScrolled 
-                  ? 'text-primary hover:bg-primary/10' 
-                  : 'text-white hover:bg-white/10'
-              } hover:scale-105`}
+            {/* Logo in header - appears on scroll */}
+            <div 
+              className="transition-all duration-300"
+              style={{ 
+                opacity: logoOpacity,
+                transform: `scale(${0.4 + (scrollProgress * 0.6)})`,
+                transformOrigin: 'left center'
+              }}
             >
-              <MessageCircle size={24} />
-              <span className="hidden md:inline font-medium">Contato</span>
-            </a>
+              <img 
+                src={logo} 
+                alt="Lins Neves" 
+                className="h-12 w-auto cursor-pointer"
+                onClick={() => scrollToSection('#hero')}
+              />
+            </div>
 
             {/* Hamburger Button - Mobile */}
             <button

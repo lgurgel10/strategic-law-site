@@ -1,11 +1,29 @@
 import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 import logo from "@/assets/logo-lins-neves.png";
 import bgVideo from "@/assets/bg-video.mp4";
 
 const Hero = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const progress = Math.min(window.scrollY / 300, 1);
+      setScrollProgress(progress);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Logo animation values
+  const logoScale = 1 - (scrollProgress * 0.5);
+  const logoOpacity = 1 - scrollProgress;
+  const logoTranslateY = scrollProgress * -100;
+  const logoTranslateX = scrollProgress * -50;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -23,11 +41,18 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4">
-        <div className="animate-fade-in pt-20">
+        <div 
+          className="animate-fade-in pt-20 transition-none"
+          style={{
+            transform: `scale(${logoScale}) translateY(${logoTranslateY}px) translateX(${logoTranslateX}px)`,
+            opacity: logoOpacity,
+            transformOrigin: 'left center'
+          }}
+        >
           <img 
             src={logo} 
             alt="Lins Neves Advocacia" 
-            className="w-48 md:w-72 h-auto"
+            className="w-72 md:w-[400px] lg:w-[500px] h-auto"
           />
         </div>
       </div>
