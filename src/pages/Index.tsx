@@ -15,7 +15,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <About />
       {/* Shared background for PracticeAreas and Team */}
       <div 
         className="relative"
@@ -27,6 +26,17 @@ const Index = () => {
         }}
       >
         <PracticeAreas />
+      </div>
+      <About />
+      <div 
+        className="relative"
+        style={{ 
+          backgroundImage: `url(${marbleTexture})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <Team />
       </div>
       <Insights />

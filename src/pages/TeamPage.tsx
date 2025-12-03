@@ -177,10 +177,13 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
   }
   
+  // Sócios que não devem abrir modal
+  const isSocio = member.name === "Estevan De Barros Lins" || member.name === "Arthur Rodrigues da Costa Neves";
+  
   return (
     <div 
-      onClick={onClick}
-      className="group cursor-pointer flex flex-col items-center text-center bg-white/50 backdrop-blur-sm p-6 rounded-2xl hover:bg-white/70 transition-all duration-300 shadow-sm hover:shadow-md"
+      onClick={isSocio ? undefined : onClick}
+      className={`group flex flex-col items-center text-center bg-white/50 backdrop-blur-sm p-6 rounded-2xl transition-all duration-300 shadow-sm ${isSocio ? '' : 'cursor-pointer hover:bg-white/70 hover:shadow-md'}`}
     >
       <div className="relative mb-4 overflow-hidden rounded-lg w-48 h-60 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
         <img 

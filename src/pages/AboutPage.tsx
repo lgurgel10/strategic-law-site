@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import bgVideo from "@/assets/bg-video.mp4";
 import marbleTexture from "@/assets/marble-texture.jpg";
-import officeInterior from "@/assets/office-interior.jpg";
+import logo from "@/assets/logo-lins-neves.png";
 
 const AboutPage = () => {
   useEffect(() => {
@@ -43,36 +43,25 @@ const AboutPage = () => {
       <section className="relative">
         {/* Desktop: Side by side layout */}
         <div className="flex flex-col lg:flex-row">
-          {/* Left side - Office Image (only on desktop) */}
+          {/* Left side - Logo Vertical Grande Branca (only on desktop) */}
           <div className="hidden lg:block lg:w-1/3 relative">
-            <div className="sticky top-0 h-screen">
-              <img 
-                src={officeInterior}
-                alt="Interior do escritório Lins Neves"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-primary/30" />
+            <div className="sticky top-0 h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+              <div className="w-full h-full flex items-center justify-center px-8">
+                <img 
+                  src={logo}
+                  alt="Lins Neves Advocacia"
+                  className="w-full max-w-md h-auto object-contain opacity-95"
+                  style={{ transform: 'rotate(-90deg)' }}
+                />
+              </div>
             </div>
           </div>
 
           {/* Right side - Content */}
           <div className="lg:w-2/3">
-            {/* Intro Box */}
-            <div className="bg-primary text-white p-8 md:p-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-accent">
-                Compromisso com soluções jurídicas de alta confiabilidade e visão inovadora
-              </h2>
-              <p className="text-lg leading-relaxed text-white/90">
-                O Lins Neves Advocacia é um escritório que nasceu com uma visão inovadora sobre o Direito Empresarial e sobre o impacto que decisões jurídicas estratégicas exercem no crescimento e na competitividade das empresas.
-              </p>
-              <p className="text-lg leading-relaxed text-white/90 mt-4">
-                Nossa equipe é formada por advogados experientes, especializados em diversas áreas do Direito, capazes de atuar de maneira integrada tanto na esfera consultiva quanto no contencioso.
-              </p>
-            </div>
-
-            {/* Content with marble background */}
+            {/* Content with marble background - igual Áreas de Atuação */}
             <div 
-              className="relative"
+              className="relative min-h-screen"
               style={{ 
                 backgroundImage: `url(${marbleTexture})`,
                 backgroundSize: 'cover',
@@ -80,17 +69,30 @@ const AboutPage = () => {
                 backgroundAttachment: 'fixed'
               }}
             >
-              <div className="absolute inset-0 bg-white/90" />
-              
               <div className="relative z-10 p-8 md:p-12 space-y-12">
-                {/* Back Link */}
-                <Link 
-                  to="/"
-                  className="group inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
-                >
-                  <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
-                  <span>Voltar ao início</span>
-                </Link>
+                {/* Back Link - sempre visível no topo */}
+                <div className="mb-8">
+                  <Link 
+                    to="/"
+                    className="group inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
+                  >
+                    <ArrowLeft className="w-6 h-6 group-hover:-translate-x-2 transition-transform" />
+                    <span className="text-lg font-medium">Voltar ao início</span>
+                  </Link>
+                </div>
+
+                {/* Intro Box */}
+                <div className="bg-primary text-white p-8 md:p-12 rounded-lg">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-accent">
+                    Compromisso com soluções jurídicas de alta confiabilidade e visão inovadora
+                  </h2>
+                  <p className="text-lg leading-relaxed text-white/90">
+                    O Lins Neves Advocacia é um escritório que nasceu com uma visão inovadora sobre o Direito Empresarial e sobre o impacto que decisões jurídicas estratégicas exercem no crescimento e na competitividade das empresas.
+                  </p>
+                  <p className="text-lg leading-relaxed text-white/90 mt-4">
+                    Nossa equipe é formada por advogados experientes, especializados em diversas áreas do Direito, capazes de atuar de maneira integrada tanto na esfera consultiva quanto no contencioso.
+                  </p>
+                </div>
 
                 {/* Nossa Missão */}
                 <div className="space-y-6">

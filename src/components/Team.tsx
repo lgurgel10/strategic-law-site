@@ -189,10 +189,13 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     transform = 'scale(1.3)';
   }
   
+  // Sócios que não devem abrir modal
+  const isSocio = member.name === "Estevan De Barros Lins" || member.name === "Arthur Rodrigues da Costa Neves";
+  
   return (
     <div 
-      onClick={onClick}
-      className="group cursor-pointer flex flex-col items-center text-center px-2 md:px-4 w-full py-4"
+      onClick={isSocio ? undefined : onClick}
+      className={`group flex flex-col items-center text-center px-2 md:px-4 w-full py-4 ${isSocio ? '' : 'cursor-pointer'}`}
     >
       <div className="relative mb-3 md:mb-4 flex-shrink-0 overflow-hidden rounded-lg w-24 h-32 md:w-32 md:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
         <img 
