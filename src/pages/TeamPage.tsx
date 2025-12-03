@@ -37,7 +37,7 @@ const teamMembers: TeamMember[] = [
     role: "Sócio Fundador",
     category: "socio",
     languages: ["Português"],
-    areas: ["Direito Empresarial", "Direito Tributário"],
+    areas: [],
     description: "Sócio-fundador do Lins Neves Advocacia, é formado pela Faculdade Boa Viagem (FBV) e atua há mais de 8 anos na condução estratégica das áreas tributária e empresarial do escritório, com presença marcante nos setores industrial, comercial e de prestação de serviços.\n\nSua atuação abrange o contencioso, o consultivo e o planejamento tributário e empresarial, com experiência consistente tanto nas esferas administrativa quanto judicial, assessorando empresas em demandas de alta complexidade e relevância econômica.\n\nEspecialista em Direito Tributário pelo INSPER/SP, instituição na qual também concluiu as formações em Contabilidade para Não Contadores, Compliance e Reforma Tributária – IVA no Brasil, possui ainda especialização em Direito Tributário e Contabilidade Tributária pelo IBET.\n\nAtualmente, cursa pós-graduação em Direito Societário no Instituto Luiz Mário Moutinho/PE, ampliando sua atuação voltada à eficiência estratégica de negócios.",
     email: "estevan@linsneves.adv.br",
     linkedin: "https://br.linkedin.com/in/estevan-de-barros-lins-301a4667",
@@ -49,7 +49,7 @@ const teamMembers: TeamMember[] = [
     role: "Sócio",
     category: "socio",
     languages: ["Português"],
-    areas: ["Direito Portuário", "Direito Administrativo"],
+    areas: [],
     description: "Sócio e coordenador da área de Direito Regulatório do Lins Neves Advocacia. Especializado em Direito Administrativo pela Universidade Federal de Pernambuco (UFPE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS), desenvolve sua atuação com ênfase em infraestrutura, parcerias público-privadas e inovação tecnológica.\n\nNo setor público, exerce o cargo de Conselheiro Fiscal em duas autoridades portuárias brasileiras, com mandato até 2027. Atuou como Diretor do Complexo Industrial Portuário de Suape, onde liderou iniciativas estratégicas de inteligência de mercado, incluindo a implementação do Estudo de Complexidade Econômica em parceria com a UNCTAD/ONU.\n\nAo longo de sua trajetória, esteve à frente da consolidação de projetos portuários e industriais que superam R$ 5 bilhões em investimentos privados, contribuindo de forma decisiva para o fortalecimento da infraestrutura logística e para o desenvolvimento econômico sustentável do setor.",
     email: "arthurneves@linsneves.adv.br",
     linkedin: "https://br.linkedin.com/in/arthur-neves-508451101",
@@ -61,7 +61,7 @@ const teamMembers: TeamMember[] = [
     name: "Ana Carolina Cavalcante Araújo",
     role: "Head da Área Trabalhista",
     category: "head",
-    languages: ["Português", "Espanhol", "Inglês"],
+    languages: ["Português", "Espanhol", "Inglês", "Francês"],
     areas: ["Direito Trabalhista"],
     description: "É advogada e Head da área Trabalhista no escritório Lins Neves Advocacia, possui mais de 12 anos de experiência no Direito do Trabalho.\n\nSua carreira foi construída em renomados escritórios, consolidando ampla expertise na assessoria jurídica trabalhista empresarial, com atuação estratégica na defesa de interesses patronais.\n\nCom experiência na condução e gestão de mais de 30 jurídicos trabalhistas de empresas de diversos segmentos, Ana Carolina destaca-se pela liderança na coordenação de equipes e pela busca constante de excelência técnica.\n\nÉ graduada em Direito pela Universidade Católica de Pernambuco (UNICAP), pós-graduada em Direito Processual Civil e do Trabalho pela Escola Superior da Magistratura Trabalhista (ESMATRA) e membra da Comissão de Direito do Trabalho da OAB/PE.",
     email: "carolinaaraujo@linsneves.adv.br",
@@ -97,7 +97,7 @@ const teamMembers: TeamMember[] = [
     role: "Head da Área Cível e Contratual",
     category: "head",
     languages: ["Português"],
-    areas: ["Contencioso Cível", "Direito Contratual", "Direito Empresarial", "Marcas e Patentes", "Recuperação Judicial"],
+    areas: ["Contencioso Cível", "Direito Contratual", "Direito Empresarial", "Recuperação Judicial"],
     description: "Responsável pela gestão da Área Cível do Lins Neves Advocacia, atuando de forma estratégica na condução de demandas complexas e na coordenação das operações jurídicas do setor.\n\nGraduada em Direito e pós-graduada em Direito Civil e Empresarial pela Faculdade de Direito do Recife – UFPE, reúne mais de uma década de experiência na área.\n\nSua atuação envolve a condução de casos cíveis e empresariais tanto no consultivo quanto no contencioso, unindo rigor técnico, visão analítica e capacidade de gestão. Damaris lidera a equipe do departamento cível, estruturando fluxos de trabalho, padronizando procedimentos e assegurando a eficiência e a qualidade nos atendimentos.\n\nCom forte orientação para resultados, Damaris atua na integração entre técnica jurídica, gestão e eficiência operacional, contribuindo diretamente para a excelência e a solidez institucional do setor cível do escritório.",
     email: "damariscavalcanti@linsneves.adv.br",
     linkedin: "https://br.linkedin.com/in/damaris-cavalcanti-42422290",
@@ -109,7 +109,7 @@ const teamMembers: TeamMember[] = [
     role: "Head da Área Societária, Imobiliário e Empresarial",
     category: "head",
     languages: ["Português"],
-    areas: ["Direito Imobiliário", "Direito Societário", "Direito Empresarial", "Recuperação Judicial e Falência", "Marcas e Patentes"],
+    areas: ["Direito Imobiliário", "Direito Societário", "Direito Empresarial", "Recuperação Judicial e Falência"],
     description: "Responsável pelas áreas Societária, Imobiliária, Contratual, Recuperação Judicial e Falência do Lins Neves Advocacia, atuando de forma estratégica na condução de operações empresariais e na orientação jurídica de negócios de alta complexidade.\n\nAdvogado inscrito na OAB/AL e OAB/PE, com formação e especialização voltadas ao Direito Imobiliário e Empresarial. Bacharel em Direito pela Universidade Estácio de Alagoas, é pós-graduado em Advocacia Imobiliária e Negocial pela EBRADI e possui LL.M. em Direito e Mercado Imobiliário pelo Instituto Luiz Mário Moutinho.\n\nSua experiência engloba a estruturação de operações imobiliárias complexas, regularizações fundiárias, contratos empresariais, operações built to suit, locações corporativas, projetos de arrendamentos portuários e disputas envolvendo empreendimentos logísticos e industriais.\n\nÉ membro do IBRADIM, Administrador Judicial credenciado ao Tribunal de Justiça de Alagoas e integrante da Comissão de Direito Aduaneiro e Comércio Exterior (CODACE) da OAB/PE.",
     email: "tiberioleite@linsneves.adv.br",
     linkedin: "https://www.linkedin.com/in/tiberioleite/",
@@ -122,7 +122,7 @@ const teamMembers: TeamMember[] = [
     role: "Advogado",
     category: "advogado",
     languages: ["Português", "Inglês"],
-    areas: ["Direito Empresarial", "Direito Contratual", "Marcas e Patentes", "Direito Societário", "Recuperação Judicial e Falência"],
+    areas: ["Direito Empresarial", "Direito Contratual", "Direito Societário", "Recuperação Judicial e Falência"],
     description: "Bacharel em Direito pela Universidade Católica de Pernambuco (UNICAP), Especialista em Direito Contratual pela Faculdade de Direito do Recife (UFPE/FDR), aluno da Escola de Formação em Advocacia Empresarial (EFAE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS).\n\nSua atuação é dedicada ao Direito Empresarial, com experiência em fusões e aquisições de empresas, condução de processos de due diligence, estruturação e reorganizações societárias, resolução de conflitos entre sócios, recuperações judiciais e assessoramento na implementação de novos negócios, sempre com foco em segurança jurídica e governança corporativa.\n\nPossui experiência na atuação em departamentos jurídicos de empresas multinacionais, envolvendo a negociação e gestão de contratos complexos em âmbito internacional, participação em operações societárias transnacionais, análise e mitigação de riscos empresariais, resolução de demandas corporativas e suporte técnico em litígios cíveis.",
     email: "marcospecht@linsneves.adv.br",
     linkedin: "https://www.linkedin.com/in/marco-bel%C3%A9m-specht-aa1536175/",
@@ -177,13 +177,10 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
   }
   
-  // Sócios que não devem abrir modal
-  const isSocio = member.name === "Estevan De Barros Lins" || member.name === "Arthur Rodrigues da Costa Neves";
-  
   return (
     <div 
-      onClick={isSocio ? undefined : onClick}
-      className={`group flex flex-col items-center text-center bg-white/50 backdrop-blur-sm p-6 rounded-2xl transition-all duration-300 shadow-sm ${isSocio ? '' : 'cursor-pointer hover:bg-white/70 hover:shadow-md'}`}
+      onClick={onClick}
+      className="group cursor-pointer flex flex-col items-center text-center bg-white/50 backdrop-blur-sm p-6 rounded-2xl hover:bg-white/70 transition-all duration-300 shadow-sm hover:shadow-md"
     >
       <div className="relative mb-4 overflow-hidden rounded-lg w-48 h-60 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
         <img 
@@ -339,19 +336,21 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
               <p className="text-foreground">{member.languages.join(' • ')}</p>
             </div>
             
-            <div>
-              <h4 className="text-accent text-sm font-medium mb-2">Áreas de atuação</h4>
-              <div className="flex flex-wrap gap-2">
-                {member.areas.map((area, index) => (
-                  <span 
-                    key={index}
-                    className="text-sm px-3 py-1 bg-primary/10 text-primary rounded"
-                  >
-                    {area}
-                  </span>
-                ))}
+            {member.areas.length > 0 && (
+              <div>
+                <h4 className="text-accent text-sm font-medium mb-2">Áreas de atuação</h4>
+                <div className="flex flex-wrap gap-2">
+                  {member.areas.map((area, index) => (
+                    <span 
+                      key={index}
+                      className="text-sm px-3 py-1 bg-primary/10 text-primary rounded"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             
             <div>
               <div className="text-foreground whitespace-pre-line leading-relaxed">

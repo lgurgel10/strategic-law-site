@@ -1,11 +1,12 @@
-import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale } from "lucide-react";
+import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale, Receipt } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const practiceAreas = [
-  { icon: FileText, name: "Estruturação de Contratos de Grande Porte", description: "Contratos complexos e estratégicos para seu negócio" },
+  { icon: FileText, name: "Contrato e Desenvolvimento de Negócios", description: "Contratos complexos e estratégicos para seu negócio" },
   { icon: Shield, name: "Gestão de Riscos e Compliance", description: "Proteção empresarial e conformidade regulatória" },
-  { icon: Building, name: "Societário e Tributário", description: "Estruturação societária e planejamento tributário" },
+  { icon: Building, name: "Societário", description: "Estruturação societária e governança corporativa" },
+  { icon: Receipt, name: "Tributário", description: "Planejamento tributário e consultoria fiscal" },
   { icon: TrendingUp, name: "Fusões e Aquisições", description: "Assessoria completa em M&A e reorganizações" },
   { icon: Briefcase, name: "Reestruturação Empresarial", description: "Soluções para recuperação e crescimento" },
   { icon: Landmark, name: "Estruturação de Concessões e PPPs", description: "Parcerias público-privadas e concessões" },
