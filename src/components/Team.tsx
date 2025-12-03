@@ -151,14 +151,36 @@ const teamMembers: TeamMember[] = [
 ];
 
 const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () => void }) => {
+  // Pessoas que precisam de zoom maior
+  const needsMoreZoom = [
+    "Estevan De Barros Lins",
+    "Arthur Rodrigues da Costa Neves"
+  ];
+  
+  // Pessoas que precisam ter a foto subida mais
+  const needsHigherPosition = [
+    "Angélika Souza Veríssimo da Costa"
+  ];
+  
+  const scale = needsMoreZoom.includes(member.name) ? 'scale(1.3)' : 'scale(1.2)';
+  
+  let objectPosition;
+  if (needsMoreZoom.includes(member.name)) {
+    objectPosition = 'center 35%';
+  } else if (needsHigherPosition.includes(member.name)) {
+    objectPosition = 'center 5%';
+  } else {
+    objectPosition = 'center 15%';
+  }
+  
   return (
     <div 
       onClick={onClick}
       className="group cursor-pointer flex flex-col items-center text-center px-2 md:px-4 w-full py-4"
     >
-      <div className="relative mb-3 md:mb-4 flex-shrink-0 p-1">
+      <div className="relative mb-3 md:mb-4 flex-shrink-0 p-1 overflow-hidden rounded-full">
         <Avatar className="w-20 h-20 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
-          <AvatarImage src={member.photo} alt={member.name} className="object-cover object-top" />
+          <AvatarImage src={member.photo} alt={member.name} className="object-cover" style={{ objectPosition: objectPosition, transform: scale, width: '100%', height: '100%' }} />
           <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg md:text-2xl font-medium">
             {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
           </AvatarFallback>
@@ -199,6 +221,15 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
 const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | null; isOpen: boolean; onClose: () => void }) => {
   if (!member) return null;
 
+  // Pessoas que precisam de zoom maior
+  const needsMoreZoom = [
+    "Estevan De Barros Lins",
+    "Arthur Rodrigues da Costa Neves"
+  ];
+  
+  const scale = needsMoreZoom.includes(member.name) ? 'scale(1.3)' : 'scale(1.2)';
+  const objectPosition = needsMoreZoom.includes(member.name) ? 'center 35%' : 'center 15%';
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -208,8 +239,8 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-4">
-            <Avatar className="w-32 h-32 ring-4 ring-primary/20">
-              <AvatarImage src={member.photo} alt={member.name} className="object-cover object-top" />
+            <Avatar className="w-32 h-32 ring-4 ring-primary/20 overflow-hidden rounded-full">
+              <AvatarImage src={member.photo} alt={member.name} className="object-cover" style={{ objectPosition: objectPosition, transform: scale, width: '100%', height: '100%' }} />
               <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-3xl font-medium">
                 {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
               </AvatarFallback>
@@ -305,16 +336,11 @@ const Team = () => {
       ref={ref}
     >
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-4 text-primary transition-all duration-700 ${
+        <h2 className={`text-4xl md:text-5xl font-bold text-center mb-12 text-primary transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Equipe
         </h2>
-        <p className={`text-center text-muted-foreground mb-12 text-lg transition-all duration-700 delay-100 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          Experiência e Visão Integrada
-        </p>
 
         {/* Carousel */}
         <div className={`max-w-6xl mx-auto mb-12 px-12 md:px-16 transition-all duration-700 delay-200 ${

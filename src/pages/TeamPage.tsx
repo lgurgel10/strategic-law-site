@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone, ArrowLeft } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import marbleTexture from "@/assets/marble-texture.jpg";
@@ -145,18 +144,30 @@ const teamMembers: TeamMember[] = [
 ];
 
 const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () => void }) => {
+  // Pessoas que precisam ter a foto subida
+  const needsHigherPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Angélika Souza Veríssimo da Costa",
+    "Damaris T. Cavalcanti Maciel",
+    "Tibério Almeida Leite",
+    "Marco Belém Specht",
+    "Laila Marques"
+  ];
+  
+  const objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
+  
   return (
     <div 
       onClick={onClick}
-      className="group cursor-pointer flex flex-col items-center text-center"
+      className="group cursor-pointer flex flex-col items-center text-center bg-white/50 backdrop-blur-sm p-6 rounded-2xl hover:bg-white/70 transition-all duration-300 shadow-sm hover:shadow-md"
     >
-      <div className="relative mb-4">
-        <Avatar className="w-36 h-36 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
-          <AvatarImage src={member.photo} alt={member.name} className="object-cover object-top" />
-          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-2xl font-medium">
-            {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
-          </AvatarFallback>
-        </Avatar>
+      <div className="relative mb-4 overflow-hidden rounded-lg w-48 h-60 ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
+        <img 
+          src={member.photo} 
+          alt={member.name} 
+          className="w-full h-full object-cover" 
+          style={{ objectPosition: objectPosition, transform: 'scale(1.3)' }}
+        />
       </div>
       
       <h3 className="text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-1">
@@ -202,12 +213,14 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-4">
-            <Avatar className="w-32 h-32 ring-4 ring-primary/20">
-              <AvatarImage src={member.photo} alt={member.name} className="object-cover object-top" />
-              <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-3xl font-medium">
-                {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
-              </AvatarFallback>
-            </Avatar>
+            <div className="w-32 h-40 overflow-hidden rounded-lg">
+              <img 
+                src={member.photo} 
+                alt={member.name} 
+                className="w-full h-full object-cover" 
+                style={{ objectPosition: 'center center', transform: 'scale(1.3)' }}
+              />
+            </div>
             
             <div className="space-y-3 text-sm">
               <a 
@@ -296,9 +309,6 @@ const TeamPage = () => {
     setSelectedMember(null);
   };
 
-  const socios = teamMembers.filter(m => m.category === "socio");
-  const heads = teamMembers.filter(m => m.category === "head");
-  const advogados = teamMembers.filter(m => m.category === "advogado");
 
   return (
     <div className="min-h-screen bg-background">
@@ -331,45 +341,10 @@ const TeamPage = () => {
             Conheça os profissionais que fazem o Lins Neves Advocacia
           </p>
 
-          {/* Sócios */}
-          <section className="mb-16">
-            <h2 className="text-2xl font-bold text-primary mb-8 pb-2 border-b-2 border-accent/30">
-              Sócios
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              {socios.map((member, index) => (
-                <TeamMemberCard 
-                  key={index}
-                  member={member} 
-                  onClick={() => handleMemberClick(member)}
-                />
-              ))}
-            </div>
-          </section>
-
-          {/* Heads */}
-          <section className="mb-16">
-            <h2 className="text-2xl font-bold text-primary mb-8 pb-2 border-b-2 border-accent/30">
-              Heads de Área
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              {heads.map((member, index) => (
-                <TeamMemberCard 
-                  key={index}
-                  member={member} 
-                  onClick={() => handleMemberClick(member)}
-                />
-              ))}
-            </div>
-          </section>
-
-          {/* Advogados */}
+          {/* Todos os membros juntos */}
           <section>
-            <h2 className="text-2xl font-bold text-primary mb-8 pb-2 border-b-2 border-accent/30">
-              Advogados
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              {advogados.map((member, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 justify-items-center">
+              {teamMembers.map((member, index) => (
                 <TeamMemberCard 
                   key={index}
                   member={member} 

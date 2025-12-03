@@ -33,7 +33,7 @@ const About = () => {
             </h2>
             
             <p className="text-lg md:text-xl text-white leading-relaxed mb-8">
-              O <strong className="text-accent">Lins Neves</strong> é mais do que um escritório de advocacia — é um <strong>hub de negócios</strong>, com uma visão inovadora sobre o Direito Empresarial e o impacto das decisões jurídicas no crescimento das empresas.
+              Somos uma equipe dedicada a oferecer soluções jurídicas estratégicas, com uma visão inovadora sobre o Direito Empresarial, orientando decisões com segurança, eficiência e impacto real no crescimento das empresas.
             </p>
 
             <Link 

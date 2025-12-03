@@ -47,7 +47,7 @@ const PracticeAreas = () => {
                 style={{ transitionDelay: `${150 + index * 100}ms` }}
               >
                 <CardHeader className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" style={{ backgroundColor: '#02869d' }}>
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <CardTitle className="text-xl text-primary group-hover:text-secondary transition-colors duration-300">
