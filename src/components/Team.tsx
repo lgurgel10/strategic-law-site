@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Carousel,
   CarouselContent,
@@ -151,26 +150,43 @@ const teamMembers: TeamMember[] = [
 ];
 
 const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () => void }) => {
-  // Pessoas que precisam de zoom maior
-  const needsMoreZoom = [
-    "Estevan De Barros Lins",
-    "Arthur Rodrigues da Costa Neves"
-  ];
-  
-  // Pessoas que precisam ter a foto subida mais
+  // Mesma lógica de posicionamento da página "Nossa Equipe"
   const needsHigherPosition = [
-    "Angélika Souza Veríssimo da Costa"
+    "Ana Carolina de Araújo Carvalho",
+    "Angélika Souza Veríssimo da Costa",
+    "Damaris T. Cavalcanti Maciel",
+    "Tibério Almeida Leite",
+    "Marco Belém Specht",
+    "Laila Marques"
   ];
   
-  const scale = needsMoreZoom.includes(member.name) ? 'scale(1.3)' : 'scale(1.2)';
+  const needsRightPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Laila Marques"
+  ];
+  
+  const needsMoreRightPosition = [
+    "Ana Carolina de Araújo Carvalho"
+  ];
   
   let objectPosition;
-  if (needsMoreZoom.includes(member.name)) {
-    objectPosition = 'center 35%';
-  } else if (needsHigherPosition.includes(member.name)) {
-    objectPosition = 'center 5%';
+  if (member.name === "Arthur Rodrigues da Costa Neves") {
+    objectPosition = '150% center';
+  } else if (member.name === "Ana Carolina de Araújo Carvalho") {
+    objectPosition = '150% -10%';
+  } else if (needsMoreRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
+  } else if (needsRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'right top' : 'right center';
   } else {
-    objectPosition = 'center 15%';
+    objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
+  }
+  
+  let transform;
+  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho") {
+    transform = 'scale(1.6) translateX(10%)';
+  } else {
+    transform = 'scale(1.3)';
   }
   
   return (
@@ -178,13 +194,18 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
       onClick={onClick}
       className="group cursor-pointer flex flex-col items-center text-center px-2 md:px-4 w-full py-4"
     >
-      <div className="relative mb-3 md:mb-4 flex-shrink-0 p-1 overflow-hidden rounded-full">
-        <Avatar className="w-20 h-20 md:w-32 lg:w-40 md:h-32 lg:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
-          <AvatarImage src={member.photo} alt={member.name} className="object-cover" style={{ objectPosition: objectPosition, transform: scale, width: '100%', height: '100%' }} />
-          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg md:text-2xl font-medium">
-            {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
-          </AvatarFallback>
-        </Avatar>
+      <div className="relative mb-3 md:mb-4 flex-shrink-0 overflow-hidden rounded-lg w-24 h-32 md:w-32 md:h-40 ring-2 md:ring-4 ring-accent/30 group-hover:ring-accent transition-all duration-300">
+        <img 
+          src={member.photo} 
+          alt={member.name} 
+          className="w-full h-full object-cover" 
+          style={{ 
+            objectPosition: objectPosition, 
+            transform: transform,
+            width: '100%',
+            height: '100%'
+          }}
+        />
       </div>
       
       <h3 className="text-sm md:text-base lg:text-lg font-semibold text-primary group-hover:text-accent transition-colors duration-300 mb-1 md:mb-1 line-clamp-2 px-1">
@@ -221,14 +242,44 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
 const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | null; isOpen: boolean; onClose: () => void }) => {
   if (!member) return null;
 
-  // Pessoas que precisam de zoom maior
-  const needsMoreZoom = [
-    "Estevan De Barros Lins",
-    "Arthur Rodrigues da Costa Neves"
+  // Mesma lógica de posicionamento da página "Nossa Equipe"
+  const needsHigherPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Angélika Souza Veríssimo da Costa",
+    "Damaris T. Cavalcanti Maciel",
+    "Tibério Almeida Leite",
+    "Marco Belém Specht",
+    "Laila Marques"
   ];
   
-  const scale = needsMoreZoom.includes(member.name) ? 'scale(1.3)' : 'scale(1.2)';
-  const objectPosition = needsMoreZoom.includes(member.name) ? 'center 35%' : 'center 15%';
+  const needsRightPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Laila Marques"
+  ];
+  
+  const needsMoreRightPosition = [
+    "Ana Carolina de Araújo Carvalho"
+  ];
+  
+  let objectPosition;
+  if (member.name === "Arthur Rodrigues da Costa Neves") {
+    objectPosition = '150% center';
+  } else if (member.name === "Ana Carolina de Araújo Carvalho") {
+    objectPosition = '150% -10%';
+  } else if (needsMoreRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
+  } else if (needsRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'right top' : 'right center';
+  } else {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
+  }
+  
+  let transform;
+  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho") {
+    transform = 'scale(1.6) translateX(10%)';
+  } else {
+    transform = 'scale(1.3)';
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -239,12 +290,14 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-4">
-            <Avatar className="w-32 h-32 ring-4 ring-primary/20 overflow-hidden rounded-full">
-              <AvatarImage src={member.photo} alt={member.name} className="object-cover" style={{ objectPosition: objectPosition, transform: scale, width: '100%', height: '100%' }} />
-              <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-3xl font-medium">
-                {member.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
-              </AvatarFallback>
-            </Avatar>
+            <div className="w-32 h-40 overflow-hidden rounded-lg ring-4 ring-primary/20">
+              <img 
+                src={member.photo} 
+                alt={member.name} 
+                className="w-full h-full object-cover" 
+                style={{ objectPosition: objectPosition, transform: transform, width: '100%', height: '100%' }}
+              />
+            </div>
             
             <div className="space-y-3 text-sm">
               <a 

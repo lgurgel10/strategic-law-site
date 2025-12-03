@@ -154,7 +154,28 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     "Laila Marques"
   ];
   
-  const objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
+  // Pessoas que precisam ter a foto mais à direita
+  const needsRightPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Laila Marques"
+  ];
+  
+  // Pessoas que precisam ter a foto ainda mais à direita (40% mais)
+  const needsMoreRightPosition = [
+    "Ana Carolina de Araújo Carvalho"
+  ];
+  
+  let objectPosition;
+  if (member.name === "Arthur Rodrigues da Costa Neves") {
+    // Arthur precisa estar 100% centralizado
+    objectPosition = 'center center';
+  } else if (needsMoreRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
+  } else if (needsRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'right top' : 'right center';
+  } else {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
+  }
   
   return (
     <div 
@@ -166,7 +187,14 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
           src={member.photo} 
           alt={member.name} 
           className="w-full h-full object-cover" 
-          style={{ objectPosition: objectPosition, transform: 'scale(1.3)' }}
+          style={{ 
+            objectPosition: member.name === "Arthur Rodrigues da Costa Neves" ? '150% center' : 
+                          member.name === "Ana Carolina de Araújo Carvalho" ? '150% -10%' : objectPosition, 
+            transform: member.name === "Arthur Rodrigues da Costa Neves" ? 'scale(1.6) translateX(10%)' : 
+                      member.name === "Ana Carolina de Araújo Carvalho" ? 'scale(1.6) translateX(10%)' : 'scale(1.3)',
+            width: '100%',
+            height: '100%'
+          }}
         />
       </div>
       
@@ -204,6 +232,45 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
 const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | null; isOpen: boolean; onClose: () => void }) => {
   if (!member) return null;
 
+  // Calcular objectPosition e transform para o modal (mesma lógica do card)
+  const needsHigherPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Angélika Souza Veríssimo da Costa",
+    "Damaris T. Cavalcanti Maciel",
+    "Tibério Almeida Leite",
+    "Marco Belém Specht",
+    "Laila Marques"
+  ];
+  
+  const needsRightPosition = [
+    "Ana Carolina de Araújo Carvalho",
+    "Laila Marques"
+  ];
+  
+  const needsMoreRightPosition = [
+    "Ana Carolina de Araújo Carvalho"
+  ];
+  
+  let objectPosition;
+  if (member.name === "Arthur Rodrigues da Costa Neves") {
+    objectPosition = '150% center';
+  } else if (member.name === "Ana Carolina de Araújo Carvalho") {
+    objectPosition = '150% -10%';
+  } else if (needsMoreRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
+  } else if (needsRightPosition.includes(member.name)) {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'right top' : 'right center';
+  } else {
+    objectPosition = needsHigherPosition.includes(member.name) ? 'center top' : 'center center';
+  }
+  
+  let transform;
+  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho") {
+    transform = 'scale(1.6) translateX(10%)';
+  } else {
+    transform = 'scale(1.3)';
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -213,12 +280,17 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-4">
-            <div className="w-32 h-40 overflow-hidden rounded-lg">
+            <div className="w-32 h-40 overflow-hidden rounded-lg ring-4 ring-primary/20">
               <img 
                 src={member.photo} 
                 alt={member.name} 
                 className="w-full h-full object-cover" 
-                style={{ objectPosition: 'center center', transform: 'scale(1.3)' }}
+                style={{ 
+                  objectPosition: objectPosition, 
+                  transform: transform,
+                  width: '100%',
+                  height: '100%'
+                }}
               />
             </div>
             
