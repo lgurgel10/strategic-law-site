@@ -22,11 +22,18 @@ import damarisPhoto from "@/assets/team/damaris.jpg";
 import tiberioPhoto from "@/assets/team/tiberio.jpg";
 import marcoPhoto from "@/assets/team/marco.jpg";
 import lailaPhoto from "@/assets/team/laila.jpg";
+import joaoVictorBradleyPhoto from "@/assets/team/FOTO JOÃO BRADLEY.jpg";
+import anaCarolinaRamosPhoto from "@/assets/team/FOTO CAROL RAMOS.jpg";
+import aliceRaposoPhoto from "@/assets/team/FOTO ALICE RAPOSO.jpg";
+import luizFelipePhoto from "@/assets/team/FOTO LUIZ FELIPE.JPG";
+import matheusCavalcantiPhoto from "@/assets/team/FOTO MATHEUS.jpg";
+import analeciaRamosPhoto from "@/assets/team/FOTO ANALECIA.jpg";
+import anaKarolinaMendoncaPhoto from "@/assets/team/FOTO ANA KAROLINA.jpg";
 
 interface TeamMember {
   name: string;
   role: string;
-  category: "socio" | "head" | "advogado";
+  category: "socio" | "head" | "advogado" | "equipe";
   languages: string[];
   areas: string[];
   description: string;
@@ -146,6 +153,84 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/laila-marques-7981b31b9",
     phone: "(81) 9.8944-3214",
     photo: lailaPhoto
+  },
+  // Equipe de Apoio
+  {
+    name: "João Victor Bradley",
+    role: "Assistente Jurídico administrativo",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Assistente Jurídico administrativo do Lins Neves Advocacia.",
+    email: "joaobradley@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: joaoVictorBradleyPhoto
+  },
+  {
+    name: "Ana Carolina Ramos",
+    role: "Assistente Jurídica Cível",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Assistente Jurídica Cível do Lins Neves Advocacia.",
+    email: "carolinaramos@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: anaCarolinaRamosPhoto
+  },
+  {
+    name: "Alice Raposo Figueiredo",
+    role: "Estagiária da equipe trabalhista",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Estagiária da equipe trabalhista do Lins Neves Advocacia.",
+    email: "aliceraposo@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: aliceRaposoPhoto
+  },
+  {
+    name: "Luiz Felipe Vieira",
+    role: "Estagiário da equipe Tributária",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Estagiário da equipe Tributária do Lins Neves Advocacia.",
+    email: "luizfelipe@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: luizFelipePhoto
+  },
+  {
+    name: "Matheus Cavalcanti de Santana",
+    role: "Estagiário da equipe Cível",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Estagiário da equipe Cível do Lins Neves Advocacia.",
+    email: "matheuscavalcanti@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: matheusCavalcantiPhoto
+  },
+  {
+    name: "Analécia Ramos",
+    role: "Secretária",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Secretária do Lins Neves Advocacia.",
+    email: "analeciaramos@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: analeciaRamosPhoto
+  },
+  {
+    name: "Ana Karolina Mendonça",
+    role: "Assistente administrativa",
+    category: "equipe",
+    languages: ["Português"],
+    areas: [],
+    description: "Assistente administrativa do Lins Neves Advocacia.",
+    email: "anakarolina@linsneves.adv.br",
+    phone: "(81) 9.8944-3214",
+    photo: anaKarolinaMendoncaPhoto
   }
 ];
 
@@ -169,11 +254,27 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     "Ana Carolina de Araújo Carvalho"
   ];
   
+  // Pessoas da equipe de apoio que precisam ter a foto subida
+  const equipeApoio = [
+    "Luiz Felipe Vieira",
+    "Matheus Cavalcanti de Santana",
+    "Analécia Ramos",
+    "Ana Karolina Mendonça"
+  ];
+  
   let objectPosition;
   if (member.name === "Arthur Rodrigues da Costa Neves") {
     objectPosition = '150% center';
   } else if (member.name === "Ana Carolina de Araújo Carvalho") {
     objectPosition = '150% -10%';
+  } else if (member.name === "João Victor Bradley") {
+    objectPosition = 'center 40%';
+  } else if (member.name === "Ana Carolina Ramos") {
+    objectPosition = '150% -30%';
+  } else if (member.name === "Alice Raposo Figueiredo") {
+    objectPosition = 'center -10%';
+  } else if (equipeApoio.includes(member.name)) {
+    objectPosition = 'center -30%';
   } else if (needsMoreRightPosition.includes(member.name)) {
     objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
   } else if (needsRightPosition.includes(member.name)) {
@@ -183,7 +284,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   }
   
   let transform;
-  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho") {
+  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho" || member.name === "Ana Carolina Ramos") {
     transform = 'scale(1.6) translateX(10%)';
   } else {
     transform = 'scale(1.3)';
@@ -261,11 +362,27 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
     "Ana Carolina de Araújo Carvalho"
   ];
   
+  // Pessoas da equipe de apoio que precisam ter a foto subida
+  const equipeApoio = [
+    "Luiz Felipe Vieira",
+    "Matheus Cavalcanti de Santana",
+    "Analécia Ramos",
+    "Ana Karolina Mendonça"
+  ];
+  
   let objectPosition;
   if (member.name === "Arthur Rodrigues da Costa Neves") {
     objectPosition = '150% center';
   } else if (member.name === "Ana Carolina de Araújo Carvalho") {
     objectPosition = '150% -10%';
+  } else if (member.name === "João Victor Bradley") {
+    objectPosition = 'center 40%';
+  } else if (member.name === "Ana Carolina Ramos") {
+    objectPosition = '150% -30%';
+  } else if (member.name === "Alice Raposo Figueiredo") {
+    objectPosition = 'center -10%';
+  } else if (equipeApoio.includes(member.name)) {
+    objectPosition = 'center -30%';
   } else if (needsMoreRightPosition.includes(member.name)) {
     objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
   } else if (needsRightPosition.includes(member.name)) {
@@ -275,7 +392,7 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
   }
   
   let transform;
-  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho") {
+  if (member.name === "Arthur Rodrigues da Costa Neves" || member.name === "Ana Carolina de Araújo Carvalho" || member.name === "Ana Carolina Ramos") {
     transform = 'scale(1.6) translateX(10%)';
   } else {
     transform = 'scale(1.3)';
