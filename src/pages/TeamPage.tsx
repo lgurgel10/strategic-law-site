@@ -165,7 +165,7 @@ const teamMembers: TeamMember[] = [
     name: "Ana Carolina Ramos",
     role: "Assistente Jurídica Cível",
     category: "equipe",
-    languages: ["Português"],
+    languages: ["Português", "Inglês"],
     areas: [],
     description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP\n\nAssistente Jurídica Cível",
     email: "anacarolina@linsneves.adv.br",
@@ -257,11 +257,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   
   // Pessoas da equipe de apoio que precisam ter a foto subida
   const equipeApoio = [
-    "Alice Raposo Figueiredo",
-    "Luiz Felipe Vieira",
-    "Matheus Cavalcanti de Santana",
-    "Analécia Ramos",
-    "Ana Karolina Mendonça"
+    "Luiz Felipe Vieira"
   ];
   
   let objectPosition;
@@ -272,6 +268,14 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     objectPosition = 'center 40%';
   } else if (member.name === "Ana Carolina Ramos") {
     objectPosition = '150% -30%';
+  } else if (member.name === "Alice Raposo Figueiredo") {
+    objectPosition = 'center 5%';
+  } else if (member.name === "Matheus Cavalcanti de Santana") {
+    objectPosition = 'center -10%';
+  } else if (member.name === "Analécia Ramos") {
+    objectPosition = 'center -10%';
+  } else if (member.name === "Ana Karolina Mendonça") {
+    objectPosition = 'center -10%';
   } else if (equipeApoio.includes(member.name)) {
     objectPosition = 'center -30%';
   } else if (needsMoreRightPosition.includes(member.name)) {
@@ -296,7 +300,11 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
             objectPosition: member.name === "Arthur Rodrigues da Costa Neves" ? '150% center' : 
                           member.name === "Ana Carolina de Araújo Carvalho" ? '150% -10%' :
                           member.name === "João Victor Bradley" ? 'center 40%' :
-                          member.name === "Ana Carolina Ramos" ? '150% -30%' : objectPosition, 
+                          member.name === "Ana Carolina Ramos" ? '150% -30%' :
+                          member.name === "Alice Raposo Figueiredo" ? 'center 5%' :
+                          member.name === "Matheus Cavalcanti de Santana" ? 'center -10%' :
+                          member.name === "Analécia Ramos" ? 'center -10%' :
+                          member.name === "Ana Karolina Mendonça" ? 'center -10%' : objectPosition, 
             transform: member.name === "Arthur Rodrigues da Costa Neves" ? 'scale(1.6) translateX(10%)' : 
                       member.name === "Ana Carolina de Araújo Carvalho" ? 'scale(1.6) translateX(10%)' :
                       member.name === "Ana Carolina Ramos" ? 'scale(1.6) translateX(10%)' : 'scale(1.3)',

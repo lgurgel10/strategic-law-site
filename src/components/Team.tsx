@@ -171,7 +171,7 @@ const teamMembers: TeamMember[] = [
     name: "Ana Carolina Ramos",
     role: "Assistente Jurídica Cível",
     category: "equipe",
-    languages: ["Português"],
+    languages: ["Português", "Inglês"],
     areas: [],
     description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP\n\nAssistente Jurídica Cível",
     email: "anacarolina@linsneves.adv.br",
@@ -261,10 +261,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   
   // Pessoas da equipe de apoio que precisam ter a foto subida
   const equipeApoio = [
-    "Luiz Felipe Vieira",
-    "Matheus Cavalcanti de Santana",
-    "Analécia Ramos",
-    "Ana Karolina Mendonça"
+    "Luiz Felipe Vieira"
   ];
   
   let objectPosition;
@@ -277,6 +274,12 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   } else if (member.name === "Ana Carolina Ramos") {
     objectPosition = '150% -30%';
   } else if (member.name === "Alice Raposo Figueiredo") {
+    objectPosition = 'center 5%';
+  } else if (member.name === "Matheus Cavalcanti de Santana") {
+    objectPosition = 'center -10%';
+  } else if (member.name === "Analécia Ramos") {
+    objectPosition = 'center -10%';
+  } else if (member.name === "Ana Karolina Mendonça") {
     objectPosition = 'center -10%';
   } else if (equipeApoio.includes(member.name)) {
     objectPosition = 'center -30%';
@@ -369,10 +372,7 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
   
   // Pessoas da equipe de apoio que precisam ter a foto subida
   const equipeApoio = [
-    "Luiz Felipe Vieira",
-    "Matheus Cavalcanti de Santana",
-    "Analécia Ramos",
-    "Ana Karolina Mendonça"
+    "Luiz Felipe Vieira"
   ];
   
   let objectPosition;
@@ -385,6 +385,12 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
   } else if (member.name === "Ana Carolina Ramos") {
     objectPosition = '150% -30%';
   } else if (member.name === "Alice Raposo Figueiredo") {
+    objectPosition = 'center 5%';
+  } else if (member.name === "Matheus Cavalcanti de Santana") {
+    objectPosition = 'center -10%';
+  } else if (member.name === "Analécia Ramos") {
+    objectPosition = 'center -10%';
+  } else if (member.name === "Ana Karolina Mendonça") {
     objectPosition = 'center -10%';
   } else if (equipeApoio.includes(member.name)) {
     objectPosition = 'center -30%';
