@@ -16,7 +16,7 @@ import damarisPhoto from "@/assets/team/damaris.jpg";
 import tiberioPhoto from "@/assets/team/tiberio.jpg";
 import marcoPhoto from "@/assets/team/marco.jpg";
 import lailaPhoto from "@/assets/team/laila.jpg";
-import joaoVictorBradleyPhoto from "@/assets/team/FOTO JOÃO BRADLEY.jpg";
+import joaoVictorBradleyPhoto from "@/assets/team/FOTO JOAO BRADLEY.jpg";
 import anaCarolinaRamosPhoto from "@/assets/team/FOTO CAROL RAMOS.jpg";
 import aliceRaposoPhoto from "@/assets/team/FOTO ALICE RAPOSO.jpg";
 import luizFelipePhoto from "@/assets/team/FOTO LUIZ FELIPE.jpg";
