@@ -19,7 +19,7 @@ import lailaPhoto from "@/assets/team/laila.jpg";
 import joaoVictorBradleyPhoto from "@/assets/team/FOTO JOÃO BRADLEY.jpg";
 import anaCarolinaRamosPhoto from "@/assets/team/FOTO CAROL RAMOS.jpg";
 import aliceRaposoPhoto from "@/assets/team/FOTO ALICE RAPOSO.jpg";
-import luizFelipePhoto from "@/assets/team/FOTO LUIZ FELIPE.JPG";
+import luizFelipePhoto from "@/assets/team/FOTO LUIZ FELIPE.jpg";
 import matheusCavalcantiPhoto from "@/assets/team/FOTO MATHEUS.jpg";
 import analeciaRamosPhoto from "@/assets/team/FOTO ANALECIA.jpg";
 import anaKarolinaMendoncaPhoto from "@/assets/team/FOTO ANA KAROLINA.jpg";
