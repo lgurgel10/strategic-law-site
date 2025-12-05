@@ -22,6 +22,7 @@ import damarisPhoto from "@/assets/team/damaris.jpg";
 import tiberioPhoto from "@/assets/team/tiberio.jpg";
 import marcoPhoto from "@/assets/team/marco.jpg";
 import lailaPhoto from "@/assets/team/laila.jpg";
+<<<<<<< HEAD
 import joaoVictorBradleyPhoto from "@/assets/team/fotojoaobradley.jpg";
 import anaCarolinaRamosPhoto from "@/assets/team/fotocarolramos.jpg";
 import aliceRaposoPhoto from "@/assets/team/fotoaliceraposo.jpg";
@@ -29,6 +30,15 @@ import luizFelipePhoto from "@/assets/team/fotoluizfelipe.jpg";
 import matheusCavalcantiPhoto from "@/assets/team/fotomatheus.jpg";
 import analeciaRamosPhoto from "@/assets/team/fotoanalecia.jpg";
 import anaKarolinaMendoncaPhoto from "@/assets/team/fotoanakarolina.jpg";
+=======
+import joaoVictorBradleyPhoto from "@/assets/team/FOTO JOAO BRADLEY.jpg";
+import anaCarolinaRamosPhoto from "@/assets/team/FOTO CAROL RAMOS.jpg";
+import aliceRaposoPhoto from "@/assets/team/FOTO ALICE RAPOSO.jpg";
+import luizFelipePhoto from "@/assets/team/FOTO LUIZ FELIPE.jpg";
+import matheusCavalcantiPhoto from "@/assets/team/FOTO MATHEUS.jpg";
+import analeciaRamosPhoto from "@/assets/team/FOTO ANALECIA.jpg";
+import anaKarolinaMendoncaPhoto from "@/assets/team/FOTO ANA KAROLINA.jpg";
+>>>>>>> 96acd3a9a478cea950cc21bfd9a05fb89d6d0a13
 
 interface TeamMember {
   name: string;
@@ -161,8 +171,9 @@ const teamMembers: TeamMember[] = [
     category: "equipe",
     languages: ["Português"],
     areas: [],
-    description: "Assistente Jurídico administrativo do Lins Neves Advocacia.",
+    description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP. Assistente Jurídico administrativo do Lins Neves Advocacia.",
     email: "joaobradley@linsneves.adv.br",
+    linkedin: "https://www.linkedin.com/in/joão-victor-bradley-a02090211",
     phone: "(81) 9.8944-3214",
     photo: joaoVictorBradleyPhoto
   },
@@ -172,8 +183,9 @@ const teamMembers: TeamMember[] = [
     category: "equipe",
     languages: ["Português"],
     areas: [],
-    description: "Assistente Jurídica Cível do Lins Neves Advocacia.",
-    email: "carolinaramos@linsneves.adv.br",
+    description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP. Assistente Jurídica Cível do Lins Neves Advocacia.",
+    email: "anacarolina@linsneves.adv.br",
+    linkedin: "https://www.linkedin.com/in/ana-carolina-ramos-47b5b6223",
     phone: "(81) 9.8944-3214",
     photo: anaCarolinaRamosPhoto
   },
@@ -183,8 +195,9 @@ const teamMembers: TeamMember[] = [
     category: "equipe",
     languages: ["Português"],
     areas: [],
-    description: "Estagiária da equipe trabalhista do Lins Neves Advocacia.",
+    description: "Estudante de Direito da Faculdade Nova Roma - FNR. Estagiária da equipe trabalhista do Lins Neves Advocacia.",
     email: "aliceraposo@linsneves.adv.br",
+    linkedin: "https://www.linkedin.com/in/alice-raposo-bb21322bb",
     phone: "(81) 9.8944-3214",
     photo: aliceRaposoPhoto
   },
@@ -194,8 +207,9 @@ const teamMembers: TeamMember[] = [
     category: "equipe",
     languages: ["Português"],
     areas: [],
-    description: "Estagiário da equipe Tributária do Lins Neves Advocacia.",
-    email: "luizfelipe@linsneves.adv.br",
+    description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP. Estagiário da equipe Tributária do Lins Neves Advocacia.",
+    email: "felipevieira@linsneves.adv.br",
+    linkedin: "https://www.linkedin.com/in/luiz-felipe-vieira-5878472ab",
     phone: "(81) 9.8944-3214",
     photo: luizFelipePhoto
   },
@@ -205,8 +219,9 @@ const teamMembers: TeamMember[] = [
     category: "equipe",
     languages: ["Português"],
     areas: [],
-    description: "Estagiário da equipe Cível do Lins Neves Advocacia.",
-    email: "matheuscavalcanti@linsneves.adv.br",
+    description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP. Estagiário da equipe Cível do Lins Neves Advocacia.",
+    email: "matheus.cavalcanti@linsneves.adv.br",
+    linkedin: "https://www.linkedin.com/in/matheus-cavalcanti-0a9975236",
     phone: "(81) 9.8944-3214",
     photo: matheusCavalcantiPhoto
   },
@@ -217,7 +232,7 @@ const teamMembers: TeamMember[] = [
     languages: ["Português"],
     areas: [],
     description: "Secretária do Lins Neves Advocacia.",
-    email: "analeciaramos@linsneves.adv.br",
+    email: "analecia@linsneves.com.br",
     phone: "(81) 9.8944-3214",
     photo: analeciaRamosPhoto
   },
@@ -228,7 +243,7 @@ const teamMembers: TeamMember[] = [
     languages: ["Português"],
     areas: [],
     description: "Assistente administrativa do Lins Neves Advocacia.",
-    email: "anakarolina@linsneves.adv.br",
+    email: "karolinamendonca@linsneves.adv.br",
     phone: "(81) 9.8944-3214",
     photo: anaKarolinaMendoncaPhoto
   }
