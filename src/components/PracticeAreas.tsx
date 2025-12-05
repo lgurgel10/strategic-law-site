@@ -1,4 +1,4 @@
-import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale, Receipt } from "lucide-react";
+import { Building, FileText, Shield, Briefcase, TrendingUp, Landmark, Globe, BookOpen, Scale, Receipt, Users, Gavel } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -7,6 +7,8 @@ const practiceAreas = [
   { icon: Shield, name: "Gestão de Riscos e Compliance", description: "Proteção empresarial e conformidade regulatória" },
   { icon: Building, name: "Societário", description: "Estruturação societária e governança corporativa" },
   { icon: Receipt, name: "Tributário", description: "Planejamento tributário e consultoria fiscal" },
+  { icon: Users, name: "Trabalhista", description: "Assessoria jurídica trabalhista empresarial" },
+  { icon: Gavel, name: "Empresarial", description: "Consultoria e contencioso empresarial estratégico" },
   { icon: TrendingUp, name: "Fusões e Aquisições", description: "Assessoria completa em M&A e reorganizações" },
   { icon: Briefcase, name: "Reestruturação Empresarial", description: "Soluções para recuperação e crescimento" },
   { icon: Landmark, name: "Estruturação de Concessões e PPPs", description: "Parcerias público-privadas e concessões" },
