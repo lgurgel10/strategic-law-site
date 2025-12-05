@@ -16,15 +16,6 @@ import damarisPhoto from "@/assets/team/damaris.jpg";
 import tiberioPhoto from "@/assets/team/tiberio.jpg";
 import marcoPhoto from "@/assets/team/marco.jpg";
 import lailaPhoto from "@/assets/team/laila.jpg";
-<<<<<<< HEAD
-import joaoVictorBradleyPhoto from "@/assets/team/fotojoaobradley.jpg";
-import anaCarolinaRamosPhoto from "@/assets/team/fotocarolramos.jpg";
-import aliceRaposoPhoto from "@/assets/team/fotoaliceraposo.jpg";
-import luizFelipePhoto from "@/assets/team/fotoluizfelipe.jpg";
-import matheusCavalcantiPhoto from "@/assets/team/fotomatheus.jpg";
-import analeciaRamosPhoto from "@/assets/team/fotoanalecia.jpg";
-import anaKarolinaMendoncaPhoto from "@/assets/team/fotoanakarolina.jpg";
-=======
 import joaoVictorBradleyPhoto from "@/assets/team/FOTO JOAO BRADLEY.jpg";
 import anaCarolinaRamosPhoto from "@/assets/team/FOTO CAROL RAMOS.jpg";
 import aliceRaposoPhoto from "@/assets/team/FOTO ALICE RAPOSO.jpg";
@@ -32,7 +23,6 @@ import luizFelipePhoto from "@/assets/team/FOTO LUIZ FELIPE.jpg";
 import matheusCavalcantiPhoto from "@/assets/team/FOTO MATHEUS.jpg";
 import analeciaRamosPhoto from "@/assets/team/FOTO ANALECIA.jpg";
 import anaKarolinaMendoncaPhoto from "@/assets/team/FOTO ANA KAROLINA.jpg";
->>>>>>> 96acd3a9a478cea950cc21bfd9a05fb89d6d0a13
 
 interface TeamMember {
   name: string;
