@@ -61,7 +61,7 @@ const teamMembers: TeamMember[] = [
     name: "Arthur Rodrigues da Costa Neves",
     role: "Sócio",
     category: "socio",
-    languages: ["Português", "English"],
+    languages: ["Português", "Inglês"],
     areas: [],
     description: "Sócio do Lins Neves Advocacia. Especializado em Direito Administrativo pela Universidade Federal de Pernambuco (UFPE) e pós-graduando em Direito Marítimo e Portuário pela Universidade Católica de Santos (UNISANTOS), desenvolve sua atuação com ênfase em infraestrutura, parcerias público-privadas e inovação tecnológica.\n\nNo setor público, exerce o cargo de Conselheiro Fiscal em duas autoridades portuárias brasileiras, com mandato até 2027. Atuou como Diretor do Complexo Industrial Portuário de Suape, onde liderou iniciativas estratégicas de inteligência de mercado, incluindo a implementação do Estudo de Complexidade Econômica em parceria com a UNCTAD/ONU.\n\nAo longo de sua trajetória, esteve à frente da consolidação de projetos portuários e industriais que superam R$ 5 bilhões em investimentos privados, contribuindo de forma decisiva para o fortalecimento da infraestrutura logística e para o desenvolvimento econômico sustentável do setor.",
     email: "arthurneves@linsneves.adv.br",
