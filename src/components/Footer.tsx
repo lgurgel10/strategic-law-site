@@ -1,8 +1,9 @@
-import { Linkedin, MessageCircle, Instagram } from "lucide-react";
+import { Linkedin, MessageCircle, Instagram, Phone } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo-lins-neves.png";
 
 const WHATSAPP_NUMBER = "5581989443214";
+const PHONE_NUMBER = "5581989443214";
 const LINKEDIN_URL = "https://br.linkedin.com/company/barroslinsadvogados";
 const INSTAGRAM_URL = "https://www.instagram.com/barroslinsadvogados";
 
@@ -38,6 +39,15 @@ const Footer = () => {
                 >
                   <MessageCircle className="w-5 h-5" />
                   <span className="text-sm">WhatsApp</span>
+                </a>
+                <a 
+                  href={`https://wa.me/${PHONE_NUMBER}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white/80 hover:text-accent transition-colors"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span className="text-sm">(81) 9.8944-3214</span>
                 </a>
                 <a 
                   href={LINKEDIN_URL}
@@ -81,11 +91,27 @@ const Footer = () => {
                 <p>Empresarial Janete Costa</p>
                 <p>Rua Padre Carapuceiro, 968 - Sala 2001 a 2003</p>
                 <p>Boa Viagem - CEP 51020-280</p>
+                <a 
+                  href="https://maps.google.com/?q=Empresarial+Janete+Costa,+Rua+Padre+Carapuceiro,+968,+Boa+Viagem,+Recife+-+PE,+51020-280"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-accent hover:text-accent/80 transition-colors mt-2 inline-block"
+                >
+                  Ver no mapa
+                </a>
               </div>
               <div>
                 <p className="font-semibold text-white mb-2">Brasília</p>
                 <p>Quadra SHS, Quadra 06, Conjunto A, Bloco A, Sala 501</p>
                 <p>Asa Sul – Brasília/DF - CEP 70316-102</p>
+                <a 
+                  href="https://maps.google.com/?q=Quadra+SHS+06+Conjunto+A+Bloco+A+Sala+501,+Asa+Sul,+Brasília+-+DF,+70316-102"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-accent hover:text-accent/80 transition-colors mt-2 inline-block"
+                >
+                  Ver no mapa
+                </a>
               </div>
             </div>
           </div>

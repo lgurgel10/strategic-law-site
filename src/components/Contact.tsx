@@ -36,7 +36,7 @@ const Contact = () => {
       city: "Boa Viagem",
       cep: "CEP 51020-280",
       phone: "+55 (81) 9.8944-3214",
-      mapUrl: "https://maps.google.com"
+      mapUrl: "https://maps.google.com/?q=Empresarial+Janete+Costa,+Rua+Padre+Carapuceiro,+968,+Boa+Viagem,+Recife+-+PE,+51020-280"
     },
     {
       id: "brasilia",
@@ -45,7 +45,7 @@ const Contact = () => {
       city: "Asa Sul – Brasília/DF",
       cep: "CEP 70316-102",
       phone: "+55 (81) 9.8944-3214",
-      mapUrl: "https://maps.google.com"
+      mapUrl: "https://maps.google.com/?q=Quadra+SHS+06+Conjunto+A+Bloco+A+Sala+501,+Asa+Sul,+Brasília+-+DF,+70316-102"
     }
   ];
 
