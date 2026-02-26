@@ -166,7 +166,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Alice Raposo Figueiredo",
-    role: "Estagiária da equipe trabalhista",
+    role: "Assistente Jurídica Trabalhista",
     category: "equipe",
     languages: ["Português"],
     areas: [],
