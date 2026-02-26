@@ -10,7 +10,7 @@ import marbleTexture from "@/assets/marble-texture.jpg";
 import estevanPhoto from "@/assets/team/estevan.jpg";
 import arthurPhoto from "@/assets/team/arthur.jpg";
 import anaCarolinaAraujoPhoto from "@/assets/team/ana-carolina-araujo.jpg";
-import anaCarolinaCarvalhoPhoto from "@/assets/team/ana-carolina-carvalho.jpg";
+
 import angelikaPhoto from "@/assets/team/angelika.jpg";
 import damarisPhoto from "@/assets/team/damaris.jpg";
 import tiberioPhoto from "@/assets/team/tiberio.jpg";
@@ -76,17 +76,8 @@ const teamMembers: TeamMember[] = [
     phone: "(81) 9.8944-3214",
     photo: anaCarolinaAraujoPhoto
   },
-  {
-    name: "Ana Carolina de Araújo Carvalho",
-    role: "Head da Área Tributária",
-    category: "head",
-    languages: ["Português", "Inglês"],
-    areas: ["Direito Tributário"],
-    description: "Advogada com 15 anos de atuação em Direito Tributário, desenvolve trabalho estratégico nos âmbitos administrativo e judicial, com ampla experiência na condução de demandas de alta complexidade, assessora empresas de diversos segmentos econômicos, liderando soluções voltadas à eficiência fiscal e à segurança jurídica.\n\nFormada em Direito pela Universidade Católica de Pernambuco (UNICAP), é especialista em Direito Tributário pelo Instituto Brasileiro de Estudos Tributários (IBET), onde também cursou Contabilidade para Advogados. Atualmente cursa o Programa de Formação em Reforma Tributária pela Faculdade Brasileira de Tributação (FBT), ampliando sua atuação no novo sistema tributário nacional.",
-    email: "carolinacarvalho@linsneves.adv.br",
-    phone: "(81) 9.8944-3214",
-    photo: anaCarolinaCarvalhoPhoto
-  },
+
+
   {
     name: "Angélika Souza Veríssimo da Costa",
     role: "Head da Área Administrativa",
@@ -236,7 +227,6 @@ const teamMembers: TeamMember[] = [
 const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () => void }) => {
   // Pessoas que precisam ter a foto subida
   const needsHigherPosition = [
-    "Ana Carolina de Araújo Carvalho",
     "Angélika Souza Veríssimo da Costa",
     "Damaris T. Cavalcanti Maciel",
     "Tibério Almeida Leite",
@@ -246,13 +236,7 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
   
   // Pessoas que precisam ter a foto mais à direita
   const needsRightPosition = [
-    "Ana Carolina de Araújo Carvalho",
     "Laila Marques"
-  ];
-  
-  // Pessoas que precisam ter a foto ainda mais à direita (40% mais)
-  const needsMoreRightPosition = [
-    "Ana Carolina de Araújo Carvalho"
   ];
   
   // Pessoas da equipe de apoio que precisam ter a foto subida
@@ -278,8 +262,6 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     objectPosition = 'center -10%';
   } else if (equipeApoio.includes(member.name)) {
     objectPosition = 'center -30%';
-  } else if (needsMoreRightPosition.includes(member.name)) {
-    objectPosition = needsHigherPosition.includes(member.name) ? '87% top' : '87% center';
   } else if (needsRightPosition.includes(member.name)) {
     objectPosition = needsHigherPosition.includes(member.name) ? 'right top' : 'right center';
   } else {
