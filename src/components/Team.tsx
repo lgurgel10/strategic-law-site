@@ -176,7 +176,7 @@ const teamMembers: TeamMember[] = [
     category: "equipe",
     languages: ["Português"],
     areas: [],
-    description: "Estudante de Direito da Faculdade Nova Roma - FNR\n\nEstagiária da equipe trabalhista",
+    description: "Estudante de Direito da Faculdade Nova Roma - FNR\n\nAssistente Jurídica Trabalhista",
     email: "aliceraposo@linsneves.adv.br",
     linkedin: "https://www.linkedin.com/in/alice-raposo-bb21322bb",
     phone: "(81) 9.8944-3214",
