@@ -26,7 +26,7 @@ import joaoVictorBradleyPhoto from "@/assets/team/fotojoaobradley.jpg";
 import anaCarolinaRamosPhoto from "@/assets/team/fotocarolramos.jpg";
 import aliceRaposoPhoto from "@/assets/team/fotoaliceraposo.jpg";
 import luizFelipePhoto from "@/assets/team/fotoluizfelipe.jpg";
-import matheusCavalcantiPhoto from "@/assets/team/fotomatheus.jpg";
+
 import analeciaRamosPhoto from "@/assets/team/fotoanalecia.jpg";
 import anaKarolinaMendoncaPhoto from "@/assets/team/fotoanakarolina.jpg";
 
@@ -195,18 +195,6 @@ const teamMembers: TeamMember[] = [
     photo: luizFelipePhoto
   },
   {
-    name: "Matheus Cavalcanti de Santana",
-    role: "Estagiário da equipe Cível",
-    category: "equipe",
-    languages: ["Português"],
-    areas: [],
-    description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP\n\nEstagiário da equipe Cível",
-    email: "matheus.cavalcanti@linsneves.adv.br",
-    linkedin: "https://www.linkedin.com/in/matheus-cavalcanti-0a9975236",
-    phone: "(81) 9.8944-3214",
-    photo: matheusCavalcantiPhoto
-  },
-  {
     name: "Analécia Ramos",
     role: "Secretária",
     category: "equipe",
@@ -258,8 +246,6 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
     objectPosition = '150% -30%';
   } else if (member.name === "Alice Raposo Figueiredo") {
     objectPosition = 'center 5%';
-  } else if (member.name === "Matheus Cavalcanti de Santana") {
-    objectPosition = 'center -10%';
   } else if (member.name === "Analécia Ramos") {
     objectPosition = 'center -10%';
   } else if (member.name === "Ana Karolina Mendonça") {
@@ -367,8 +353,6 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
     objectPosition = '150% -30%';
   } else if (member.name === "Alice Raposo Figueiredo") {
     objectPosition = 'center 5%';
-  } else if (member.name === "Matheus Cavalcanti de Santana") {
-    objectPosition = 'center -10%';
   } else if (member.name === "Analécia Ramos") {
     objectPosition = 'center -10%';
   } else if (member.name === "Ana Karolina Mendonça") {
