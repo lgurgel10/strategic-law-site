@@ -270,7 +270,6 @@ const TeamMemberCard = ({ member, onClick }: { member: TeamMember; onClick: () =
                           member.name === "João Victor Bradley" ? 'center 40%' :
                           member.name === "Ana Carolina Ramos" ? '150% -30%' :
                           member.name === "Alice Raposo Figueiredo" ? 'center 5%' :
-                          member.name === "Matheus Cavalcanti de Santana" ? 'center -10%' :
                           member.name === "Analécia Ramos" ? 'center -10%' :
                           member.name === "Ana Karolina Mendonça" ? 'center -10%' : objectPosition, 
             transform: member.name === "Arthur Rodrigues da Costa Neves" ? 'scale(1.6) translateX(10%)' : 
