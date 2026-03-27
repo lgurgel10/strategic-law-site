@@ -353,8 +353,6 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
     objectPosition = '150% -30%';
   } else if (member.name === "Alice Raposo Figueiredo") {
     objectPosition = 'center 5%';
-  } else if (member.name === "Matheus Cavalcanti de Santana") {
-    objectPosition = 'center -10%';
   } else if (member.name === "Analécia Ramos") {
     objectPosition = 'center -10%';
   } else if (member.name === "Ana Karolina Mendonça") {

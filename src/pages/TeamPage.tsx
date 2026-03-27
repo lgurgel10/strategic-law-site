@@ -339,7 +339,6 @@ const TeamMemberModal = ({ member, isOpen, onClose }: { member: TeamMember | nul
   const equipeApoio = [
     "Alice Raposo Figueiredo",
     "Luiz Felipe Vieira",
-    "Matheus Cavalcanti de Santana",
     "Analécia Ramos",
     "Ana Karolina Mendonça"
   ];
