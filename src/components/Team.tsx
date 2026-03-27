@@ -26,7 +26,7 @@ import joaoVictorBradleyPhoto from "@/assets/team/fotojoaobradley.jpg";
 import anaCarolinaRamosPhoto from "@/assets/team/fotocarolramos.jpg";
 import aliceRaposoPhoto from "@/assets/team/fotoaliceraposo.jpg";
 import luizFelipePhoto from "@/assets/team/fotoluizfelipe.jpg";
-import matheusCavalcantiPhoto from "@/assets/team/fotomatheus.jpg";
+
 import analeciaRamosPhoto from "@/assets/team/fotoanalecia.jpg";
 import anaKarolinaMendoncaPhoto from "@/assets/team/fotoanakarolina.jpg";
 
