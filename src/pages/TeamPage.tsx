@@ -189,18 +189,6 @@ const teamMembers: TeamMember[] = [
     photo: luizFelipePhoto
   },
   {
-    name: "Matheus Cavalcanti de Santana",
-    role: "Estagiário da equipe Cível",
-    category: "equipe",
-    languages: ["Português"],
-    areas: [],
-    description: "Estudante de Direito da Universidade Católica de Pernambuco – UNICAP\n\nEstagiário da equipe Cível",
-    email: "matheus.cavalcanti@linsneves.adv.br",
-    linkedin: "https://www.linkedin.com/in/matheus-cavalcanti-0a9975236",
-    phone: "(81) 9.8944-3214",
-    photo: matheusCavalcantiPhoto
-  },
-  {
     name: "Analécia Ramos",
     role: "Secretária",
     category: "equipe",
